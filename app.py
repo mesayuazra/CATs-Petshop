@@ -45,10 +45,14 @@ def login():
 def register():
   return render_template('register.html')
 
-@app.route('/inner',methods=['GET','POST'])
-def inner():
-  return render_template('inner-page.html')
+@app.route('/dashboard',methods=['GET','POST'])
+def dashboard():
+  return render_template('dashboard.html')
 
+
+@app.route('/aturProduk',methods=['GET','POST'])
+def aturProduk():
+  return render_template('manageProd.html')
 
 if __name__ == '__main__':
   #DEBUG is SET to TRUE. CHANGE FOR PROD
