@@ -1,0 +1,11 @@
+body {
+  color: black;
+}
+
+.nav-item a{
+  color: black;
+}
+
+header .navbar-nav, header .navbar-brand {
+  padding: 15px 30px;
+}

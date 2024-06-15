@@ -18,101 +18,62 @@
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Produk</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-toolbar mb-2">
       <div class="btn-group me-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-envelope-fill"
+        <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
           viewBox="0 0 16 16">
           <path
-            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-        </svg>
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+        </svg>Tambah Produk</button>
+        <input class="form-control w-150" type="text" placeholder="Search" aria-label="Search">
       </div>
     </div>
   </div>
 
-  <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"><span>All </span><span
-          class="text-body-tertiary fw-semibold">(68817)</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="#"><span>Published </span><span
-          class="text-body-tertiary fw-semibold">(70348)</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="#"><span>Drafts </span><span
-          class="text-body-tertiary fw-semibold">(17)</span></a></li>
-    <div class="btn-group">
-      <li class="nav-item d-flex align-items-center"><a href="/addProd"><svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-            <path
-              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-          </svg>Tambah Produk</a>
-      </li>
+  <!-- Daftar Produk Baru -->
+  <section class="daftar-produk">
+    <div class=" table table-responsive table-hover">
+      <table class="table table-sm table-responsive table-hover">
+        <thead>
+          <tr>
+            <th scope="col">NO</th>
+            <th scope="col">NAMA PRODUK</th>
+            <th scope="col">MERK</th>
+            <th scope="col">KATEGORI</th>
+            <th scope="col">JUMLAH</th>
+            <th scope="col">HARGA</th>
+            <th scope="col">JENIS HEWAN</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mesayu Fitri Novianti Azra</td>
+            <td>data</td>
+            <td>data</td>
+            <td>Mesayu Fitri Novianti Azra</td>
+            <td>data</td>
+            <td>data</td>
+            <td><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+            </svg></a><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+            </svg></a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>placeholder</td>
+            <td>irrelevant</td>
+            <td>irrelevant</td>
+            <td>Mesayu Fitri Novianti Azra</td>
+            <td>data</td>
+            <td>data</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-  </ul>
-  <div id="products"
-    data-list="{&quot;valueNames&quot;:[&quot;product&quot;,&quot;price&quot;,&quot;category&quot;,&quot;tags&quot;,&quot;vendor&quot;,&quot;time&quot;],&quot;page&quot;:10,&quot;pagination&quot;:true}">
-    <div class="mb-4">
-    </div>
-    <div
-      class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
-    </div>
-    <table class="table table-sm fs-9 mb-0">
-      <thead>
-        <tr>
-          <th class="white-space-nowrap fs-9 align-middle ps-0">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" id="checkbox-bulk-members-select"
-                type="checkbox" data-bulk-select="{&quot;body&quot;:&quot;members-table-body&quot;}"></div>
-          </th>
-          <th class="sort align-middle" scope="col" data-sort="customer" style="width:15%; min-width:200px;">
-            NAMA PRODUK</th>
-          <th class="sort align-middle" scope="col" data-sort="email" style="width:15%; min-width:200px;">JUMLAH
-          </th>
-          <th class="sort align-middle pe-3" scope="col" data-sort="mobile_number" style="width:20%; min-width:200px;">
-            HARGA</th>
-          <th class="sort align-middle" scope="col" data-sort="city" style="width:20%; min-width:200px;">MERK</th>
-          <th class="sort align-middle" scope="col" data-sort="last_active" style="width:21%; min-width:200px;">KATEGORI
-          </th>
-          <th class="sort align-middle" scope="col" data-sort="joined" style="width:20%; min-width:200px;">JENIS HEWAN
-          </th>
-          <th class="sort align-middle" scope="col" data-sort="joined" style="width:20%; min-width:200px;"></th>
-        </tr>
-      </thead>
-      <tbody class="list" id="members-table-body">
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;/team/32.webp&quot;,&quot;name&quot;:&quot;Carry Anna&quot;},&quot;email&quot;:&quot;annac34@gmail.com&quot;,&quot;mobile&quot;:&quot;+912346578&quot;,&quot;city&quot;:&quot;Budapest&quot;,&quot;lastActive&quot;:&quot;34 min ago&quot;,&quot;joined&quot;:&quot;Dec 12, 12:56 PM&quot;}">
-            </div>
-          </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../static/img/team/32.webp" alt="">
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Carry Anna</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:annac34@gmail.com">annac34@gmail.com</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+912346578">+912346578</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Budapest</td>
-          <td class="last_active align-middle  white-space-nowrap text-body-tertiary">34 min ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary ">Dec 12, 12:56 PM</td>
-          <td class="button">
-            <button onclick="window.location.href='/tambahProduk'"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-              height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-              <path
-                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-            </svg></button>
-            <button onclick="window.location.href='/apusProduk'" style="margin-right: 5px;"><svg
-                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-              </svg></button>
-           
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
+  </section>
 </body>
 
 </html>
