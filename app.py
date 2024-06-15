@@ -49,10 +49,17 @@ def register():
 def dashboard():
   return render_template('dashboard.html')
 
-
 @app.route('/aturProduk',methods=['GET','POST'])
 def aturProduk():
   return render_template('manageProd.html')
+
+@app.route('/tambahProduk',methods=['GET','POST'])
+def tambahProduk():
+  return render_template('addProd.html')
+
+@app.route('/apusProduk',methods=['GET','POST'])
+def apusProduk():
+  return render_template('deleteProd.html')
 
 if __name__ == '__main__':
   #DEBUG is SET to TRUE. CHANGE FOR PROD

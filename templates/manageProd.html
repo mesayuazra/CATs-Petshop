@@ -36,8 +36,15 @@
           class="text-body-tertiary fw-semibold">(70348)</span></a></li>
     <li class="nav-item"><a class="nav-link" href="#"><span>Drafts </span><span
           class="text-body-tertiary fw-semibold">(17)</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="#"><span>On discount </span><span
-          class="text-body-tertiary fw-semibold">(810)</span></a></li>
+    <div class="btn-group">
+      <li class="nav-item d-flex align-items-center"><a href="/addProd"><svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+          </svg>Tambah Produk</a>
+      </li>
+    </div>
+
   </ul>
   <div id="products"
     data-list="{&quot;valueNames&quot;:[&quot;product&quot;,&quot;price&quot;,&quot;category&quot;,&quot;tags&quot;,&quot;vendor&quot;,&quot;time&quot;],&quot;page&quot;:10,&quot;pagination&quot;:true}">
@@ -59,11 +66,12 @@
           </th>
           <th class="sort align-middle pe-3" scope="col" data-sort="mobile_number" style="width:20%; min-width:200px;">
             HARGA</th>
-          <th class="sort align-middle" scope="col" data-sort="city" style="width:10%;">MERK</th>
-          <th class="sort align-middle text-end" scope="col" data-sort="last_active"
-            style="width:21%;  min-width:200px;">KATEGORI</th>
-          <th class="sort align-middle text-end pe-0" scope="col" data-sort="joined"
-            style="width:19%;  min-width:200px;">JENIS HEWAN</th>
+          <th class="sort align-middle" scope="col" data-sort="city" style="width:20%; min-width:200px;">MERK</th>
+          <th class="sort align-middle" scope="col" data-sort="last_active" style="width:21%; min-width:200px;">KATEGORI
+          </th>
+          <th class="sort align-middle" scope="col" data-sort="joined" style="width:20%; min-width:200px;">JENIS HEWAN
+          </th>
+          <th class="sort align-middle" scope="col" data-sort="joined" style="width:20%; min-width:200px;"></th>
         </tr>
       </thead>
       <tbody class="list" id="members-table-body">
@@ -75,7 +83,7 @@
           </td>
           <td class="customer align-middle white-space-nowrap"><a
               class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../assets/img/team/32.webp" alt="">
+              <div class="avatar avatar-m"><img class="rounded-circle" src="../static/img/team/32.webp" alt="">
               </div>
               <h6 class="mb-0 ms-3 fw-semibold">Carry Anna</h6>
             </a></td>
@@ -84,109 +92,22 @@
           <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
               href="tel:+912346578">+912346578</a></td>
           <td class="city align-middle white-space-nowrap text-body">Budapest</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">34 min ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Dec 12, 12:56 PM</td>
-        </tr>
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;/team/59.webp&quot;,&quot;name&quot;:&quot;Katerina Karenin&quot;},&quot;email&quot;:&quot;karkat99@gmail.com&quot;,&quot;mobile&quot;:&quot;+00564327890&quot;,&quot;city&quot;:&quot;Gotham&quot;,&quot;lastActive&quot;:&quot;2 weeks ago&quot;,&quot;joined&quot;:&quot;Nov 24, 10:16 AM&quot;}">
-            </div>
+          <td class="last_active align-middle  white-space-nowrap text-body-tertiary">34 min ago</td>
+          <td class="joined align-middle white-space-nowrap text-body-tertiary ">Dec 12, 12:56 PM</td>
+          <td class="button">
+            <button onclick="window.location.href='/tambahProduk'"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+              <path
+                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+            </svg></button>
+            <button onclick="window.location.href='/apusProduk'" style="margin-right: 5px;"><svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+              </svg></button>
+           
           </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../assets/img/team/59.webp" alt="">
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Katerina Karenin</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:karkat99@gmail.com">karkat99@gmail.com</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+00564327890">+00564327890</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Gotham</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">2 weeks ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Nov 24, 10:16 AM</td>
-        </tr>
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;&quot;,&quot;name&quot;:&quot;Roy Anderson&quot;},&quot;email&quot;:&quot;andersonroy@netflix.chill&quot;,&quot;mobile&quot;:&quot;+55890776&quot;,&quot;city&quot;:&quot;Vancouver&quot;,&quot;lastActive&quot;:&quot;4 days ago&quot;,&quot;joined&quot;:&quot;Nov 18, 5:43 PM&quot;}">
-            </div>
-          </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m">
-                <div class="avatar-name rounded-circle"><span></span></div>
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Roy Anderson</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:andersonroy@netflix.chill">andersonroy@netflix.chill</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+55890776">+55890776</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Vancouver</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">4 days ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Nov 18, 5:43 PM</td>
-        </tr>
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;/team/31.webp&quot;,&quot;name&quot;:&quot;Martina scorcese&quot;},&quot;email&quot;:&quot;cesetina1@gmail.com&quot;,&quot;mobile&quot;:&quot;+666611896&quot;,&quot;city&quot;:&quot;Viena&quot;,&quot;lastActive&quot;:&quot;6 min ago&quot;,&quot;joined&quot;:&quot;Nov 18, 2:09 AM&quot;}">
-            </div>
-          </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../assets/img/team/31.webp" alt="">
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Martina scorcese</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:cesetina1@gmail.com">cesetina1@gmail.com</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+666611896">+666611896</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Viena</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">6 min ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Nov 18, 2:09 AM</td>
-        </tr>
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;/team/33.webp&quot;,&quot;name&quot;:&quot;Luis Bunuel&quot;},&quot;email&quot;:&quot;luisuel@live.com&quot;,&quot;mobile&quot;:&quot;+55786534&quot;,&quot;city&quot;:&quot;Bangalore&quot;,&quot;lastActive&quot;:&quot;56 min ago&quot;,&quot;joined&quot;:&quot;Nov 16, 3:22 PM&quot;}">
-            </div>
-          </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../assets/img/team/33.webp" alt="">
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Luis Bunuel</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:luisuel@live.com">luisuel@live.com</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+55786534">+55786534</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Bangalore</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">56 min ago</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Nov 16, 3:22 PM</td>
-        </tr>
-        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-          <td class="fs-9 align-middle ps-0 py-3">
-            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox"
-                data-bulk-select-row="{&quot;customer&quot;:{&quot;avatar&quot;:&quot;/team/34.webp&quot;,&quot;name&quot;:&quot;Jean Renoir&quot;},&quot;email&quot;:&quot;renoirjean1836@gmail.com&quot;,&quot;mobile&quot;:&quot;+8801765458767&quot;,&quot;city&quot;:&quot;Chittagong&quot;,&quot;lastActive&quot;:&quot;Yesterday&quot;,&quot;joined&quot;:&quot;Nov 09, 8:49 AM&quot;}">
-            </div>
-          </td>
-          <td class="customer align-middle white-space-nowrap"><a
-              class="d-flex align-items-center text-body text-hover-1000" href="#!">
-              <div class="avatar avatar-m"><img class="rounded-circle" src="../assets/img/team/34.webp" alt="">
-              </div>
-              <h6 class="mb-0 ms-3 fw-semibold">Jean Renoir</h6>
-            </a></td>
-          <td class="email align-middle white-space-nowrap"><a class="fw-semibold"
-              href="mailto:renoirjean1836@gmail.com">renoirjean1836@gmail.com</a></td>
-          <td class="mobile_number align-middle white-space-nowrap"><a class="fw-bold text-body-emphasis"
-              href="tel:+8801765458767">+8801765458767</a></td>
-          <td class="city align-middle white-space-nowrap text-body">Chittagong</td>
-          <td class="last_active align-middle text-end white-space-nowrap text-body-tertiary">Yesterday</td>
-          <td class="joined align-middle white-space-nowrap text-body-tertiary text-end">Nov 09, 8:49 AM</td>
         </tr>
       </tbody>
     </table>

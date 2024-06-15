@@ -14,12 +14,12 @@ body {
 }
 
 a {
-  color: #FFDE59;
+  color: #C73420;
   text-decoration: none;
 }
 
 a:hover {
-  color: #FFEF61;
+  color: #e9551a;
   text-decoration: none;
 }
 
@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #FFEF61;
+  color: #C73420;
 }
 
 .navbar .dropdown:hover > ul {
@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #C73420;
+  color: #E75319;
 }
 
 .navbar-mobile .getstarted {
@@ -347,7 +347,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #FFEF61;
+  color: #C73420;
 }
 
 .navbar-mobile .dropdown > .dropdown-active {
@@ -526,6 +526,7 @@ section {
   display: inline-block;
   padding: 15px 0;
   filter: grayscale(100);
+  background-blend-mode: normal;
 }
 
 .cliens img:hover {
@@ -827,7 +828,7 @@ section {
 }
 
 .services .icon-box:hover h4 a {
-  color: #FFEF61;
+  color:#e9551a;
 }
 
 /*--------------------------------------------------------------

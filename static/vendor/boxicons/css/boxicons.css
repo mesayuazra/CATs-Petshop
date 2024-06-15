@@ -1455,7 +1455,7 @@
   .bx-female-sign:before {
     content: "\ea36";
   }
-  .bx-file:before {
+  .bxfile-:before {
     content: "\ea37";
   }
   .bx-file-blank:before {
