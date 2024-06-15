@@ -6,15 +6,16 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="CAT's Petshop & Clinic" name="description">
+  <meta content="CAT's Petshop & Clinic" name="keywords">
 
   <!-- Favicons -->
-  <link href="../static/img/favicon.png" rel="icon">
-  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../static/vendor/aos/aos.css" rel="stylesheet">
@@ -39,7 +40,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-   {% include 'navbar.html' %}
+  {% include 'navbar.html' %}
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -47,7 +48,8 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up" data-aos-delay="200">
           <h1>CAT's Petshop & Clinic</h1>
           <h2>Memberikan pelayanan terbaik untuk hewan peliharaan kesayangan Kamu!</h2>
         </div>
@@ -58,6 +60,42 @@
     </div>
 
   </section><!-- End Hero -->
+
+  <!-- Section clients -->
+  <section id="cliens" class="cliens section-bg" style="background-color: white;">
+    <div class="container">
+
+      <div class="row aos-init aos-animate" data-aos="zoom-in">
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="{{ url_for('static', filename='img/clients/royal_canin.png') }}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="{{ url_for('static', filename='img/clients/friskies.png') }}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="{{ url_for('static', filename='img/clients/pedigree.png') }}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="{{ url_for('static', filename='img/clients/whiskas.png') }}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="../static/img/clients/barkbox.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="../static/img/clients/furbo.png" class="img-fluid" alt="">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+   <!-- End clients -->
 
   <main id="main">
 
@@ -74,31 +112,38 @@
             <div class="icon-box">
               <div class="icon"><i class="bx bx-bath"></i></div>
               <h4><a href="">Grooming</a></h4>
-              <p>Melayani jasa grooming kucing & anjing. Kamu juga bisa panggil kami ke rumah, dijamin anabulmu bersih sih sih! Bisa diantar-jemput dari rumah ke petshop kami.</p>
+              <p>Melayani jasa grooming kucing & anjing. Kamu juga bisa panggil kami ke rumah, dijamin anabulmu bersih
+                sih sih! Bisa diantar-jemput dari rumah ke petshop kami.</p>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+            data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-food-tag"></i></div>
               <h4><a href="/food">Makanan</a></h4>
-              <p>Menyediakan makanan hewan dengan kualitas terbaik. Harganya juga bervariasi, loh. Dari yang murah sampai yang premium ada!</p>
+              <p>Menyediakan makanan hewan dengan kualitas terbaik. Harganya juga bervariasi, loh. Dari yang murah
+                sampai yang premium ada!</p>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
               <h4><a href="/accessories">Aksesoris</a></h4>
-              <p>Menyediakan beragam aksesoris yang nyaman untuk dipakai hewan kesayangan kamu. Tersedia carier, kalung, gelang, strap, dll.</p>
+              <p>Menyediakan beragam aksesoris yang nyaman untuk dipakai hewan kesayangan kamu. Tersedia carier, kalung,
+                gelang, strap, dll.</p>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-clinic"></i></div>
               <h4><a href="/ClinicHome">Klinik</a></h4>
-              <p>Menyediakan layanan konsultasi kesehatan dan pengobatan demi kebahagiaan kamu dan anabulmu. Tersedia sterilisasi, pacak kucing,
+              <p>Menyediakan layanan konsultasi kesehatan dan pengobatan demi kebahagiaan kamu dan anabulmu. Tersedia
+                sterilisasi, pacak kucing,
                 vaksinasi, hingga layanan operasi. Tenang, anabul kesayanganmu bisa kami jemput, kok! </p>
             </div>
           </div>
@@ -113,57 +158,75 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
+          <h2>Pertanyaan Yang Sering Diajukan</h2>
         </div>
 
         <div class="faq-list">
           <ul>
             <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Cabang CAT's Petshop & Clinic ada 2 ya? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
+                data-bs-target="#faq-list-1">Apa CAT's Petshop & Clinic punya beberapa cabang? <i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  Betul sekali! Untuk memudahkan pawrents dalam memberikan layanan terbaik pada anabulnya, kami memiliki 2 cabang di Grand Depok City dan di Tanah Baru, Beji, ya.
-                  Ditunggu kedatangannya!
+                  Betul sekali! Untuk memudahkan pawrents dalam memberikan layanan terbaik pada anabulnya, CAT's Petshop
+                  & CLinic memiliki 2 cabang di Grand Depok City dan di Tanah Baru, Beji, ya.
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Ini selain menyediakan layanan petshop juga ada kliniknya?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2"
+                class="collapsed">Ada layanan apa saja yang tersedia? <i class="bx bx-chevron-down icon-show"></i><i
+                  class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Yup, selain pawrents bisa membeli produk makanan dan aksesoris untuk anabul, kami juga menyediakan layanan pemeriksaan kesehatan dan pengobatan untuk anabul yang sedang sakit.
-                  Selain itu, tersedia layanan vaksin, sterilisasi, pacak kucing, dan dokter juga bisa ke rumah pawrents untuk memeriksa anabul.
+                  Selain pawrents bisa membeli produk makanan dan aksesoris untuk anabul, CAT's Petshop & Clinic juga
+                  menyediakan layanan pemeriksaan kesehatan dan pengobatan untuk anabul yang sedang sakit.
+                  Tersedia juga layanan PETs Hotel, vaksinasi, sterilisasi, pacak kucing, dan dokter juga bisa ke rumah
+                  pawrents untuk memeriksa anabul.
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3"
+                class="collapsed">Aman gak sih kalau anabul sakit diperiksa atau di-grooming di sini? <i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                  Tentu aman ya, pawrents! CAT's Petshop & Clinic sudah beroperasi sejak 2015 dan ownernya berprofesi
+                  sebagai dokter hewan lulusan UGM profesional selama lebih dari 12 tahun, lho! Produk yang digunakan
+                  juga dijamin aman dan nyaman untuk anabul.
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4"
+                class="collapsed">Apa benar kalau CAT's Petshop & Clinic melayani antar-jemput anabul untuk digrooming,
+                check up, dll? <i class="bx bx-chevron-down icon-show"></i><i
+                  class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                  Betul, pawrents. CAT's Petshop & Clinic menyediakan layanan antar jemput dari rumah ke klinik atau
+                  sebaliknya. Pawrents hanya harus menghubungi nomor kami.
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="500">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5"
+                class="collapsed">Apa ada diskon atau layanan gratis seperti vaksinasi? Jika ada, informasinya bisa
+                dilihat di mana? <i class="bx bx-chevron-down icon-show"></i><i
+                  class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                  Tentu ada, pawrents! Pawrent bisa cek di ig kami di @cats_petshop untuk informasi diskon atau layanan
+                  gratis. Oh iya, kami juga memberikan layanan grooming gratis bagi anabul pawrents yang sudah melakukan
+                  6x grooming di tempat kami, jadi grooming ke-7 gratis!
                 </p>
               </div>
             </li>
-            <a href="/dashboard">tesss</a>
 
           </ul>
         </div>
@@ -171,14 +234,99 @@
       </div>
     </section><!-- End Frequently Asked Questions Section -->
 
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Apa Kata Mereka?</h2>
+          <p></p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="../static/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Walter White</h4>
+                <span>Chief Executive Officer</span>
+                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="200">
+              <div class="pic"><img src="../static/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Sarah Jhonson</h4>
+                <span>Product Manager</span>
+                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="300">
+              <div class="pic"><img src="../static/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>William Anderson</h4>
+                <span>CTO</span>
+                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="400">
+              <div class="pic"><img src="../static/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Amanda Jepson</h4>
+                <span>Accountant</span>
+                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-   {% include 'footer.html' %}
-<!-- End Footer -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="../static/vendor/aos/aos.js"></script>
