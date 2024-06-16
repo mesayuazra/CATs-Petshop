@@ -80,7 +80,7 @@ def login():
             return jsonify({'result': 'success','msg':'success'})
         else:
             # Jika autentikasi gagal, kembalikan pesan kesalahan
-            return jsonify({'result': 'failure', 'msg': 'Invalid username or password'})
+            return jsonify({'result': 'failure', 'msg': 'Username atau password salah'})
     # Jika metode adalah GET, tampilkan halaman login
     return render_template('login.html')
 
@@ -99,17 +99,17 @@ def register():
         # Email validation
         email_regex = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         if not re.match(email_regex, email):
-            return jsonify({'result': 'failure', 'msg': 'Invalid email format'})
+            return jsonify({'result': 'failure', 'msg': 'Format email tidak valid'})
 
         # Password validation
         if password != confirm_password:
-            return jsonify({'result': 'failure', 'msg': 'Passwords do not match'})
+            return jsonify({'result': 'failure', 'msg': 'Password Anda salah'})
 
         hashed_password = generate_password_hash(password)
 
         # Check if email already exists
         if db.users.find_one({'email': email}):
-            return jsonify({'result': 'failure', 'msg': 'Email already registered'})
+            return jsonify({'result': 'failure', 'msg': 'Email sudah terdaftar'})
 
         # Insert new user into the database with the registration date
         registration_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
