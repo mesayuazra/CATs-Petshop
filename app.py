@@ -2,6 +2,8 @@ from flask import Flask, render_template, session, request, jsonify, redirect, u
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 from pymongo import MongoClient
+from datetime import datetime  
+
 
 password = 'sparta'
 cxn_str = f'mongodb+srv://test:{password}@cluster0.eqimsea.mongodb.net/'
@@ -9,7 +11,7 @@ client = MongoClient(cxn_str)
 db = client.dbsparta_latihan
 
 app=Flask(__name__)
-
+app.jinja_env.globals.update(enumerate=enumerate)
 app.secret_key = 'sparta'  # Tetapkan secret key
 
 @app.route('/',methods=['GET','POST'])
@@ -109,23 +111,28 @@ def register():
         if db.users.find_one({'email': email}):
             return jsonify({'result': 'failure', 'msg': 'Email already registered'})
 
-        # Insert new user into the database
+        # Insert new user into the database with the registration date
+        registration_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db.users.insert_one({
             'pet_id': pet_id,
             'pet_name': pet_name,
             'address': address,
             'phone': phone,
             'email': email,
-            'password': hashed_password
+            'password': hashed_password,
+            'registration_date': registration_date
         })
 
         return jsonify({'result': 'success'})
 
     return render_template('register.html')
 
-@app.route('/dashboard',methods=['GET','POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-  return render_template('dashboard.html')
+    # Fetch user data from MongoDB
+    users = list(db.users.find({}, {'_id': 0, 'pet_id': 1, 'pet_name': 1, 'registration_date': 1}))
+    return render_template('dashboard.html', users=users)
+
 
 @app.route('/aturProduk',methods=['GET','POST'])
 def aturProduk():
