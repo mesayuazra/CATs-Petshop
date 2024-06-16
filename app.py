@@ -1,54 +1,63 @@
-from flask import Flask, render_template, session, request, jsonify, redirect, url_for
+from flask import Flask, render_template,send_from_directory, session, request, jsonify, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 from pymongo import MongoClient
 from datetime import datetime  
-
+import os
+from werkzeug.utils import secure_filename
 
 password = 'sparta'
 cxn_str = f'mongodb+srv://test:{password}@cluster0.eqimsea.mongodb.net/'
 client = MongoClient(cxn_str)
 db = client.dbsparta_latihan
 
-app=Flask(__name__)
+app = Flask(__name__)
 app.jinja_env.globals.update(enumerate=enumerate)
 app.secret_key = 'sparta'  # Tetapkan secret key
 
-@app.route('/',methods=['GET','POST'])
+UPLOAD_FOLDER = 'static/uploads/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
-  return render_template('index.html')
+    return render_template('index.html')
 
-@app.route('/about',methods=['GET','POST'])
+@app.route('/about', methods=['GET', 'POST'])
 def about():
-  return render_template('about.html')
+    return render_template('about.html')
 
-@app.route('/food',methods=['GET','POST'])
+@app.route('/food', methods=['GET', 'POST'])
 def food():
-  return render_template('food.html')
+    return render_template('food.html')
 
-@app.route('/accessories',methods=['GET','POST'])
+@app.route('/accessories', methods=['GET', 'POST'])
 def accessories():
-  return render_template('accessories.html')
+    return render_template('accessories.html')
 
-@app.route('/grooming',methods=['GET','POST'])
+@app.route('/grooming', methods=['GET', 'POST'])
 def grooming():
-  return render_template('grooming.html')
+    return render_template('grooming.html')
 
-@app.route('/ClinicHome',methods=['GET','POST'])
+@app.route('/ClinicHome', methods=['GET', 'POST'])
 def clinicHome():
-  return render_template('clinicHome.html')
+    return render_template('clinicHome.html')
 
-@app.route('/MedicalRecords',methods=['GET','POST'])
+@app.route('/MedicalRecords', methods=['GET', 'POST'])
 def medicalRecords():
-  return render_template('medicalRecords.html')
+    return render_template('medicalRecords.html')
 
-@app.route('/HealthCareServices',methods=['GET','POST'])
+@app.route('/HealthCareServices', methods=['GET', 'POST'])
 def HCServices():
-  return render_template('HCServices.html')
+    return render_template('HCServices.html')
 
-@app.route('/BookingHealthcareServices',methods=['GET','POST'])
+@app.route('/BookingHealthcareServices', methods=['GET', 'POST'])
 def bookHCServices():
-  return render_template('BookHCServices.html')
+    return render_template('BookHCServices.html')
 
 @app.route('/check_login_status')
 def check_login_status():
@@ -77,13 +86,12 @@ def login():
             session['logged_in'] = True
             session['username'] = username
             # Redirect ke halaman utama atau halaman yang diinginkan setelah login
-            return jsonify({'result': 'success','msg':'success'})
+            return jsonify({'result': 'success', 'msg': 'success'})
         else:
             # Jika autentikasi gagal, kembalikan pesan kesalahan
             return jsonify({'result': 'failure', 'msg': 'Invalid username or password'})
     # Jika metode adalah GET, tampilkan halaman login
     return render_template('login.html')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -133,19 +141,78 @@ def dashboard():
     users = list(db.users.find({}, {'_id': 0, 'pet_id': 1, 'pet_name': 1, 'registration_date': 1}))
     return render_template('dashboard.html', users=users)
 
+@app.route('/get_user_data', methods=['GET'])
+def get_user_data():
+    if 'logged_in' not in session or not session['logged_in']:
+        return jsonify({'result': 'failure', 'msg': 'User not logged in'}), 401
 
-@app.route('/aturProduk',methods=['GET','POST'])
+    username = session['username']
+    user = db.users.find_one({'email': username}, {'_id': 0, 'pet_id': 1, 'pet_name': 1, 'address': 1, 'phone': 1, 'email': 1, 'profile_photo': 1})
+
+    if user:
+        # Replace the profile_photo path with a URL if using a web server or serving static files
+        # Example: user['profile_photo'] = url_for('static', filename=user['profile_photo'])
+        return jsonify(user), 200
+    else:
+        return jsonify({'result': 'failure', 'msg': 'User not found'}), 404
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    if 'logged_in' not in session or not session['logged_in']:
+        return redirect(url_for('login'))  # Redirect ke halaman login jika pengguna tidak terautentikasi
+
+    # Ambil data pengguna dari MongoDB
+    username = session['username']
+    user = db.users.find_one({'email': username})
+
+    if not user:
+        return jsonify({'result': 'failure', 'msg': 'User not found'})
+
+    # Ambil URL gambar profil dari MongoDB, jika ada
+    profile_photo_url = user.get('profile_photo', None)
+
+    return render_template('profile.html', user=user, profile_photo_url=profile_photo_url)
+
+@app.route('/save_profile_photo', methods=['POST'])
+def save_profile_photo():
+    if 'profile_photo' not in request.files:
+        return jsonify({'result': 'failure', 'msg': 'No file part'}), 400
+
+    file = request.files['profile_photo']
+    if file.filename == '':
+        return jsonify({'result': 'failure', 'msg': 'No selected file'}), 400
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        username = session['username']
+        db.users.update_one(
+            {'email': username},
+            {'$set': {'profile_photo': filename}}
+        )
+
+        return jsonify({'result': 'success', 'file_path': file_path}), 200
+
+    return jsonify({'result': 'failure', 'msg': 'File type not allowed'}), 400
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/aturProduk', methods=['GET', 'POST'])
 def aturProduk():
-  return render_template('manageProd.html')
+    return render_template('manageProd.html')
 
-@app.route('/tambahProduk',methods=['GET','POST'])
+@app.route('/tambahProduk', methods=['GET', 'POST'])
 def tambahProduk():
-  return render_template('addProd.html')
+    return render_template('addProd.html')
 
-@app.route('/apusProduk',methods=['GET','POST'])
+@app.route('/hapusProduk', methods=['GET', 'POST'])
 def apusProduk():
-  return render_template('deleteProd.html')
+    return render_template('deleteProd.html')
 
 if __name__ == '__main__':
-  #DEBUG is SET to TRUE. CHANGE FOR PROD
-  app.run('0.0.0.0',port=5000,debug=True)
+    # DEBUG is SET to TRUE. CHANGE FOR PROD
+    app.run('0.0.0.0', port=5000, debug=True)
