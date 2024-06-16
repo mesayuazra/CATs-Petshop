@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProd.css') }}">
@@ -16,64 +16,103 @@
 <body>
   {% include 'sidebar.html' %}
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Produk</h1>
-    <div class="btn-toolbar mb-2">
-      <div class="btn-group me-2">
-        <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
-          viewBox="0 0 16 16">
-          <path
-            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-        </svg>Tambah Produk</button>
-        <input class="form-control w-150" type="text" placeholder="Search" aria-label="Search">
+  <div class="container">
+    <!-- Bagian Accessoris -->
+    <div class="mt-4">
+      <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Produk Accessoris</h1>
+        <div>
+          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2">+ Tambah Produk</button>
+        </div>
       </div>
+      <section class="daftar-produk">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">NO</th>
+                <th scope="col">NAMA PRODUK</th>
+                <th scope="col">JENIS HEWAN</th>
+                <th scope="col">KATEGORI</th>
+                <th scope="col">JUMLAH</th>
+                <th scope="col">HARGA</th>
+                <th scope="col">FOTO PRODUK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Example Accessory 1</td>
+                <td>Accessory</td>
+                <td>Example Category</td>
+                <td>5</td>
+                <td>$50</td>
+                <td><img src="example-accessory.jpg" alt="Accessory Image" width="50"></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Example Accessory 2</td>
+                <td>Accessory</td>
+                <td>Example Category</td>
+                <td>3</td>
+                <td>$30</td>
+                <td><img src="example-accessory2.jpg" alt="Accessory Image 2" width="50"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bagian Makanan -->
+    <div class="mt-4">
+      <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Produk Makanan</h1>
+        <div>
+          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2">+ Tambah Produk</button>
+        </div>
+      </div>
+      <section class="daftar-produk">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">NO</th>
+                <th scope="col">NAMA PRODUK</th>
+                <th scope="col">JENIS HEWAN</th>
+                <th scope="col">KATEGORI</th>
+                <th scope="col">JUMLAH</th>
+                <th scope="col">HARGA</th>
+                <th scope="col">FOTO PRODUK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Example Food 1</td>
+                <td>Food</td>
+                <td>Example Category</td>
+                <td>20</td>
+                <td>$10</td>
+                <td><img src="example-food.jpg" alt="Food Image" width="50"></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Example Food 2</td>
+                <td>Food</td>
+                <td>Example Category</td>
+                <td>15</td>
+                <td>$15</td>
+                <td><img src="example-food2.jpg" alt="Food Image 2" width="50"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   </div>
-
-  <!-- Daftar Produk Baru -->
-  <section class="daftar-produk">
-    <div class=" table table-responsive table-hover">
-      <table class="table table-sm table-responsive table-hover">
-        <thead>
-          <tr>
-            <th scope="col">NO</th>
-            <th scope="col">NAMA PRODUK</th>
-            <th scope="col">MERK</th>
-            <th scope="col">KATEGORI</th>
-            <th scope="col">JUMLAH</th>
-            <th scope="col">HARGA</th>
-            <th scope="col">JENIS HEWAN</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-            </svg></a><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-            </svg></a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>placeholder</td>
-            <td>irrelevant</td>
-            <td>irrelevant</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 </body>
 
 </html>

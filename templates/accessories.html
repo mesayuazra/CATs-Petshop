@@ -15,7 +15,7 @@
 
   <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -30,12 +30,6 @@
   <!-- Template Main CSS File -->
   <link href="../static/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Arsha - v4.3.0
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -45,83 +39,30 @@
   <section id="pricing" class="pricing" style="background:#FFDE59;">
     <div class="container" data-aos="fade-up">
 
-      <div class="section-title" style="padding: 80px 0 50px 0;">
-        <h2>Aksesoris</h2>
-        <input type="text" class="form-control mt-2 mb-3" id="searchInput" placeholder="Search...">
+      <div class="section-title">
+        <input type="text" class="form-control mt-2 mb-3 search-bar" id="searchInput" placeholder="Search...">
       </div>
 
-      <div class="row">
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+      <div class="card-container">
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" alt="...">
+          <div class="tag">Cats</div>
+          <div class="card-body">
+            <p class="card-category">Kalung</p>
+            <h5 class="card-title">Cargo Hitam</h5>
+            <div class="card-details">
+              <span class="card-price">Rp 10.000</span>
+              <span class="card-stock">Sisa 10</span>
             </div>
+            <a href="#" class="btn btn-primary">Selengkapnya</a>
           </div>
         </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 d-flex align-items-stretch mt-4 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box mt-3">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Cargo Hitam untuk Kucing </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Add more card elements here -->
+      </div>
 
-  </section><!-- End Services Section -->
+    </div>
+  </section><!-- End Pricing Section -->
 
-  </div>
-  </section>
   <!-- ======= Footer ======= -->
   {% include 'footer.html' %}
   <!-- End Footer -->
