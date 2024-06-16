@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from datetime import datetime  
 import os
 from werkzeug.utils import secure_filename
+from bson import ObjectId
 
 password = 'sparta'
 cxn_str = f'mongodb+srv://test:{password}@cluster0.eqimsea.mongodb.net/'
@@ -203,7 +204,68 @@ def uploaded_file(filename):
 
 @app.route('/aturProduk', methods=['GET', 'POST'])
 def aturProduk():
-    return render_template('manageProd.html')
+    accessories = list(db.accessories.find({}))
+    food = list(db.food.find({}))
+    return render_template('manageProd.html', accessories=accessories, food=food)
+@app.route('/api/add-accessory', methods=['POST'])
+def add_accessory():
+    product_name = request.form['productName']
+    product_type = request.form['productType']
+    product_category = request.form['productCategory']
+    product_quantity = int(request.form['productQuantity'])
+    product_price = float(request.form['productPrice'])
+    
+    if 'productImage' in request.files:
+        product_image = request.files['productImage']
+        if product_image and allowed_file(product_image.filename):
+            filename = secure_filename(product_image.filename)
+            product_image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            image_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        else:
+            return jsonify({'result': 'failure', 'msg': 'Invalid image format'})
+    else:
+        image_url = None
+
+    db.accessories.insert_one({
+        'name': product_name,
+        'type': product_type,
+        'category': product_category,
+        'quantity': product_quantity,
+        'price': product_price,
+        'image_url': image_url
+    })
+
+    return jsonify({'result': 'success', 'msg': 'Accessory added successfully'})
+@app.route('/api/add-food', methods=['POST'])
+def add_food():
+    product_name = request.form['productName']
+    product_type = request.form['productType']
+    product_category = request.form['productCategory']
+    product_quantity = int(request.form['productQuantity'])
+    product_price = float(request.form['productPrice'])
+
+    if 'productImage' in request.files:
+        product_image = request.files['productImage']
+        if product_image and allowed_file(product_image.filename):
+            filename = secure_filename(product_image.filename)
+            product_image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            image_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        else:
+            return jsonify({'result': 'failure', 'msg': 'Invalid image format'})
+    else:
+        image_url = None
+
+    db.food.insert_one({
+        'name': product_name,
+        'type': product_type,
+        'category': product_category,
+        'quantity': product_quantity,
+        'price': product_price,
+        'image_url': image_url
+    })
+
+    return jsonify({'result': 'success', 'msg': 'Food added successfully'})
+
 
 @app.route('/tambahProduk', methods=['GET', 'POST'])
 def tambahProduk():
