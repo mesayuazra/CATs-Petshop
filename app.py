@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 password = 'sparta'
-cxn_str = f'mongodb+srv://test:{password}@cluster0.eqimsea.mongodb.net/'
+cxn_str = f'mongodb://test:{password}@ac-6skehua-shard-00-00.eqimsea.mongodb.net:27017,ac-6skehua-shard-00-01.eqimsea.mongodb.net:27017,ac-6skehua-shard-00-02.eqimsea.mongodb.net:27017/?ssl=true&replicaSet=atlas-dad2x6-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0 '
 client = MongoClient(cxn_str)
 db = client.dbsparta_latihan
 
