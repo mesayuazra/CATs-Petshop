@@ -15,7 +15,7 @@
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -49,39 +49,41 @@
                             <img src="{{ profile_photo_url }}" alt="Profile Image" id="profileImage">
                         </div>
 
-                        <label for="uploadPhoto" class="btn btn-sm btn-primary mt-2">
-                            <i class="fas fa-camera"></i> Change Photo
-                        </label>
-                        <input type="file" id="uploadPhoto" accept="image/*" style="display: none;">
-                        <button id="savePhoto" class="btn btn-sm btn-success mt-2">Save</button>
+                        <div class="d-flex justify-content-center align-items-center mt-2">
+                            <label for="uploadPhoto" class="btn btn-sm btn-primary me-2">
+                                <i class="fas fa-camera"></i> Change Photo
+                            </label>
+                            <input type="file" id="uploadPhoto" accept="image/*" style="display: none;">
+                            <button id="savePhoto" class="btn btn-sm btn-success">Save</button>
+                        </div>
                     </div>
                     <div class="profile-details mt-3">
                         <h4 class="text-center">User Profile</h4>
                         <div class="mb-3">
-                            <label for="petID" class="form-label">Pet ID</label>
-                            <input type="text" class="form-control" id="petID" placeholder="Pet ID" readonly>
-                        </div>
-                        <div class="mb-3">
                             <label for="petName" class="form-label">Pet Name</label>
-                            <input type="text" class="form-control" id="petName" placeholder="Pet Name" readonly>
+                            <input type="text" class="form-control" id="petName" placeholder="Pet Name">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="Address" readonly>
+                            <input type="text" class="form-control" id="address" placeholder="Address">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Phone Number" readonly>
+                            <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email" readonly>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="text-center">
+                            <button id="saveProfile" class="btn btn-primary mt-3">Save Profile</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- ======= Footer ======= -->
     {% include 'footer.html' %}
     <!-- End Footer -->
@@ -149,12 +151,41 @@
                 });
         });
 
+        document.getElementById('saveProfile').addEventListener('click', function () {
+            var profileData = {
+                pet_name: document.getElementById('petName').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value
+            };
+
+            fetch('/update_profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(profileData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert('Profile updated successfully!');
+                        fetchUserData(); // Refresh user data to show updated information
+                    } else {
+                        alert('Failed to update profile: ' + data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while updating the profile.');
+                });
+        });
+
         function fetchUserData() {
             fetch('/get_user_data')
                 .then(response => response.json())
                 .then(data => {
                     if (data.result !== 'failure') {
-                        document.getElementById('petID').value = data.pet_id;
                         document.getElementById('petName').value = data.pet_name;
                         document.getElementById('address').value = data.address;
                         document.getElementById('phone').value = data.phone;

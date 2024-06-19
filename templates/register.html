@@ -30,10 +30,6 @@
                 <!-- Sign Up Form -->
                 <form id="registerForm">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="petID" placeholder="Pet_ID">
-                    <label for="petID">Pet_ID</label>
-                  </div>
-                  <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="petName" placeholder="Nama Hewan">
                     <label for="petName">Nama Hewan</label>
                   </div>
@@ -85,7 +81,6 @@
       $('#registerForm').submit(function (event) {
         event.preventDefault();
         var formData = {
-          'pet_id': $('#petID').val(),
           'pet_name': $('#petName').val(),
           'address': $('#address').val(),
           'phone': $('#phone').val(),

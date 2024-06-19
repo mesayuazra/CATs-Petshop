@@ -9,7 +9,8 @@
     position: relative;
     width: 150px;
     height: 150px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
+    /* Margin diubah untuk memberi ruang antara gambar profil dan tombol */
     overflow: hidden;
     border-radius: 50%;
     border: 5px solid #fff;
@@ -22,11 +23,19 @@
     object-fit: cover;
 }
 
-.change-photo {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translate(-50%, 50%);
+/* Perbaikan untuk tombol Change Photo dan Save */
+.profile .btn-primary,
+.profile .btn-success {
+    width: 150px;
+    /* Atur lebar tombol */
+    margin-top: 10px;
+    /* Atur margin atas untuk jarak di antara tombol */
+}
+
+/* Atur posisi tombol Save agar sejajar dengan tombol Change Photo */
+.profile .btn-success {
+    margin-left: 10px;
+    /* Atur margin kiri untuk jarak di antara tombol */
 }
 
 .profile-details {
@@ -57,5 +66,18 @@
     .profile-image {
         width: 120px;
         height: 120px;
+    }
+
+    /* Untuk layar kecil, atur lebar tombol sesuai kebutuhan */
+    .profile .btn-primary,
+    .profile .btn-success {
+        width: 100%;
+        /* Tombol mengambil lebar penuh */
+    }
+
+    /* Atur margin bawah tambahan untuk memberi ruang di antara tombol */
+    .profile .btn-primary,
+    .profile .btn-success {
+        margin-bottom: 10px;
     }
 }

@@ -21,8 +21,6 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-
 accessories = []  # Initialize accessories globally as an empty list
 
 def allowed_file(filename):
@@ -96,7 +94,6 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        pet_id = request.form['pet_id']
         pet_name = request.form['pet_name']
         address = request.form['address']
         phone = request.form['phone']
@@ -115,7 +112,6 @@ def register():
         
         registration_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db.users.insert_one({
-            'pet_id': pet_id,
             'pet_name': pet_name,
             'address': address,
             'phone': phone,
@@ -158,7 +154,7 @@ def save_profile_photo():
         return jsonify({'result': 'failure', 'msg': 'No file part'}), 400
     file = request.files['profile_photo']
     if file.filename == '':
-        return jsonify({'result': 'failure', 'msg': 'No selected file'}), 
+        return jsonify({'result': 'failure', 'msg': 'No selected file'}), 400
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -167,6 +163,21 @@ def save_profile_photo():
         db.users.update_one({'email': username}, {'$set': {'profile_photo': filename}})
         return jsonify({'result': 'success', 'file_path': file_path}), 200
     return jsonify({'result': 'failure', 'msg': 'File type not allowed'}), 400
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    if 'logged_in' not in session or not session['logged_in']:
+        return jsonify({'result': 'failure', 'msg': 'User not logged in'}), 401
+    data = request.json
+    username = session['username']
+    update_data = {
+        'pet_name': data.get('pet_name'),
+        'address': data.get('address'),
+        'phone': data.get('phone'),
+        'email': data.get('email')
+    }
+    db.users.update_one({'email': username}, {'$set': update_data})
+    return jsonify({'result': 'success'}), 200
 
 @app.route('/uploads/<filename>', methods=['GET'])
 def uploaded_file(filename):
