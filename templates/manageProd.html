@@ -4,10 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <title>Manage Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProd.css') }}"> -->
@@ -23,519 +20,161 @@
 <body>
   {% include 'sidebar.html' %}
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Produk</h1>
-    <div class="btn-toolbar mb-2">
-      <div class="btn-group me-3">
-        <button class=" btn btn-primary tambah-produk"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-            <path
-              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-          </svg>Tambah Produk</button>
-        <div class="search-input ms-3">
-          <input class="form-control w-150" type="text" placeholder="Search" aria-label="Search">
+  <div class="container">
+    <!-- Bagian Accessoris -->
+    <div class="mt-4">
+      <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Produk Accessoris</h1>
+        <div>
+          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addProductModal">+
+            Tambah Produk</button>
+        </div>
+      </div>
+      <section class="daftar-produk">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">NO</th>
+                <th scope="col">NAMA PRODUK</th>
+                <th scope="col">JENIS HEWAN</th>
+                <th scope="col">KATEGORI</th>
+                <th scope="col">JUMLAH</th>
+                <th scope="col">HARGA</th>
+                <th scope="col">FOTO PRODUK</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for accessory in accessories %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ accessory.name }}</td>
+                <td>{{ accessory.type }}</td>
+                <td>{{ accessory.category }}</td>
+                <td>{{ accessory.quantity }}</td>
+                <td>{{ accessory.price }}</td>
+                <td><img src="{{ url_for('static', filename=accessory.image_url) }}" alt="Accessory Image" width="50">
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bagian Makanan -->
+    <div class="mt-4">
+      <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Produk Makanan</h1>
+        <div>
+          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addProductModal">+
+            Tambah Produk</button>
+        </div>
+      </div>
+      <section class="daftar-produk">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">NO</th>
+                <th scope="col">NAMA PRODUK</th>
+                <th scope="col">JENIS HEWAN</th>
+                <th scope="col">KATEGORI</th>
+                <th scope="col">JUMLAH</th>
+                <th scope="col">HARGA</th>
+                <th scope="col">FOTO PRODUK</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for food in food %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ food.name }}</td>
+                <td>{{ food.type }}</td>
+                <td>{{ food.category }}</td>
+                <td>{{ food.quantity }}</td>
+                <td>{{ food.price }}</td>
+                <td><img src="{{ url_for('static', filename=food.image_url) }}" alt="Food Image" width="50"></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Modal for Adding Product -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Tambah Produk</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addProductForm">
+            <div class="mb-3">
+              <label for="productName" class="form-label">Nama Produk</label>
+              <input type="text" class="form-control" id="productName" name="productName" required>
+            </div>
+            <div class="mb-3">
+              <label for="productType" class="form-label">Jenis Hewan</label>
+              <input type="text" class="form-control" id="productType" name="productType" required>
+            </div>
+            <div class="mb-3">
+              <label for="productCategory" class="form-label">Kategori</label>
+              <input type="text" class="form-control" id="productCategory" name="productCategory" required>
+            </div>
+            <div class="mb-3">
+              <label for="productQuantity" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="productQuantity" name="productQuantity" required>
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Harga</label>
+              <input type="number" class="form-control" id="productPrice" name="productPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="productImage" class="form-label">Foto Produk</label>
+              <input type="file" class="form-control" id="productImage" name="productImage">
+            </div>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Daftar Produk Baru -->
-  <section class="daftar-produk">
-    <div class=" table table-responsive table-hover">
-      <table class="table table-sm table-responsive table-hover">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 5%;">NO</th>
-            <th scope="col" style="width: 20%;">NAMA PRODUK</th>
-            <th scope="col" style="width: 10%;">MERK</th>
-            <th scope="col" style="width: 10%;">KATEGORI</th>
-            <th scope="col" style="width: 5%;">JUMLAH</th>
-            <th scope="col" style="width: 10%;">JENIS HEWAN</th>
-            <th scope="col" style="width: 10%;">HARGA</th>
-            <th scope="col" style="width: 3%;"></th>
-            <th scope="col" style="width: 3%;"></th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mesayu Fitri Novianti Azra</td>
-            <td>data</td>
-            <td>data</td>
-            <td>Mes</td>
-            <td>data</td>
-            <td>data</td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a></td>
-            <td style="width: 1%;"><a href="" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor"
-                  class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                </svg>
-              </a></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pagination">
-        <button id="prev-btn" class="btn btn-primary" disabled>Previous</button>
-        <button id="next-btn" class="btn btn-primary">Next</button>
-      </div>
-    </div>
-  </section>
-
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const table = document.getElementById('product-table');
-      const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      const pageSize = 15;
-      let currentPage = 0;
+    document.getElementById('addProductForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const isAccessory = confirm(
+        "Apakah produk ini adalah aksesori? Tekan OK untuk aksesori, Cancel untuk makanan.");
 
-      function showPage(page) {
-        for (let i = 0; i < rows.length; i++) {
-          rows[i].style.display = i >= page * pageSize && i < (page + 1) * pageSize ? '' : 'none';
-        }
-        prevBtn.disabled = page === 0;
-        nextBtn.disabled = page >= Math.ceil(rows.length / pageSize) - 1;
-      }
+      const apiEndpoint = isAccessory ? '/api/add-accessory' : '/api/add-food';
 
-      showPage(currentPage);
-
-      prevBtn.addEventListener('click', function () {
-        if (currentPage > 0) {
-          currentPage--;
-          showPage(currentPage);
-        }
-      });
-
-      nextBtn.addEventListener('click', function () {
-        if (currentPage < Math.ceil(rows.length / pageSize) - 1) {
-          currentPage++;
-          showPage(currentPage);
-        }
-      });
+      fetch(apiEndpoint, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === 'success') {
+            alert('Produk berhasil ditambahkan');
+            location.reload();
+          } else {
+            alert('Gagal menambahkan produk: ' + data.msg);
+          }
+        })
+        .catch(error => {
+          console.error('Error adding product:', error);
+          alert('Terjadi kesalahan saat menambahkan produk');
+        });
     });
   </script>
 </body>
