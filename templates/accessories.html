@@ -5,11 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
+  <title>Accessories</title>
+  <!-- Include your CSS and other meta tags -->
   <link href="../static/img/favicon.png" rel="icon">
   <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -44,20 +41,21 @@
       </div>
 
       <div class="card-container">
+        {% for accessory in accessories %}
         <div class="card" data-aos="zoom-in" data-aos-delay="200">
-          <img src="{{ url_for('static', filename='img/cargo_abu.jpeg') }}" alt="...">
-          <div class="tag">Cats</div>
+          <img src="{{ url_for('static', filename='uploads/' ~ accessory['image']) }}" alt="Accessory Image">
+          <div class="tag">{{ accessory['category'] }}</div>
           <div class="card-body">
-            <p class="card-category">Kalung</p>
-            <h5 class="card-title">Cargo Hitam</h5>
+            <p class="card-category">{{ accessory['type'] }}</p>
+            <h5 class="card-title">{{ accessory['name'] }}</h5>
             <div class="card-details">
-              <span class="card-price">Rp 10.000</span>
-              <span class="card-stock">Sisa 10</span>
+              <span class="card-price">Rp {{ accessory['price'] }}</span>
+              <span class="card-stock">Sisa {{ accessory['quantity'] }}</span>
             </div>
             <a href="#" class="btn btn-primary">Selengkapnya</a>
           </div>
         </div>
-        <!-- Add more card elements here -->
+        {% endfor %}
       </div>
 
     </div>

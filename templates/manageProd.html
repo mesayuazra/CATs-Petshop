@@ -7,54 +7,74 @@
   <title>Manage Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProd.css') }}"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProd.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <style>
     .pagination {
       margin-top: 10px;
       text-align: center;
     }
-  </style>
 
+    .product-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
   {% include 'sidebar.html' %}
 
   <div class="container">
-    <!-- Bagian Accessoris -->
+    <!-- Bagian Accessories -->
     <div class="mt-4">
       <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Produk Accessoris</h1>
+        <h1 class="h2">Produk Accessories</h1>
         <div>
-          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addProductModal">+
+          <input class="form-control d-inline w-auto" type="text" id="searchAccessory" placeholder="Search"
+            aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addAccessoryModal">+
             Tambah Produk</button>
         </div>
       </div>
       <section class="daftar-produk">
         <div class="table-responsive">
-          <table class="table table-sm table-hover">
+          <table class="table table-sm table-hover" id="accessoryTable">
             <thead>
               <tr>
                 <th scope="col">NO</th>
+                <th scope="col">GAMBAR</th>
                 <th scope="col">NAMA PRODUK</th>
                 <th scope="col">JENIS HEWAN</th>
                 <th scope="col">KATEGORI</th>
                 <th scope="col">JUMLAH</th>
                 <th scope="col">HARGA</th>
-                <th scope="col">FOTO PRODUK</th>
+                <th scope="col">AKSI</th>
               </tr>
             </thead>
             <tbody>
               {% for accessory in accessories %}
               <tr>
                 <td>{{ loop.index }}</td>
+                <td>
+                  {% if accessory.image %}
+                  <img src="{{ url_for('uploaded_file', filename=accessory.image) }}" class="product-image"
+                    alt="Accessory Image">
+                  {% else %}
+                  <img src="{{ url_for('static', filename='images/default.png') }}" class="product-image"
+                    alt="Default Image">
+                  {% endif %}
+                </td>
                 <td>{{ accessory.name }}</td>
                 <td>{{ accessory.type }}</td>
                 <td>{{ accessory.category }}</td>
                 <td>{{ accessory.quantity }}</td>
                 <td>{{ accessory.price }}</td>
-                <td><img src="{{ url_for('static', filename=accessory.image_url) }}" alt="Accessory Image" width="50">
+                <td>
+                  <button class="btn btn-sm btn-primary" onclick="editProduct('{{ accessory._id }}')">Edit</button>
+                  <button class="btn btn-sm btn-danger" onclick="deleteProduct('{{ accessory._id }}')">Delete</button>
                 </td>
               </tr>
               {% endfor %}
@@ -69,35 +89,48 @@
       <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Produk Makanan</h1>
         <div>
-          <input class="form-control d-inline w-auto" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addProductModal">+
+          <input class="form-control d-inline w-auto" type="text" id="searchFood" placeholder="Search"
+            aria-label="Search">
+          <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addFoodModal">+
             Tambah Produk</button>
         </div>
       </div>
       <section class="daftar-produk">
         <div class="table-responsive">
-          <table class="table table-sm table-hover">
+          <table class="table table-sm table-hover" id="foodTable">
             <thead>
               <tr>
                 <th scope="col">NO</th>
+                <th scope="col">GAMBAR</th>
                 <th scope="col">NAMA PRODUK</th>
                 <th scope="col">JENIS HEWAN</th>
                 <th scope="col">KATEGORI</th>
                 <th scope="col">JUMLAH</th>
                 <th scope="col">HARGA</th>
-                <th scope="col">FOTO PRODUK</th>
+                <th scope="col">AKSI</th>
               </tr>
             </thead>
             <tbody>
               {% for food in food %}
               <tr>
                 <td>{{ loop.index }}</td>
+                <td>
+                  {% if food.image %}
+                  <img src="{{ url_for('uploaded_file', filename=food.image) }}" class="product-image" alt="Food Image">
+                  {% else %}
+                  <img src="{{ url_for('static', filename='images/default.png') }}" class="product-image"
+                    alt="Default Image">
+                  {% endif %}
+                </td>
                 <td>{{ food.name }}</td>
                 <td>{{ food.type }}</td>
                 <td>{{ food.category }}</td>
                 <td>{{ food.quantity }}</td>
                 <td>{{ food.price }}</td>
-                <td><img src="{{ url_for('static', filename=food.image_url) }}" alt="Food Image" width="50"></td>
+                <td>
+                  <button class="btn btn-sm btn-primary" onclick="editProduct('{{ food._id }}')">Edit</button>
+                  <button class="btn btn-sm btn-danger" onclick="deleteProduct('{{ food._id }}')">Delete</button>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -107,74 +140,167 @@
     </div>
   </div>
 
-  <!-- Modal for Adding Product -->
-  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+  <!-- Modal Tambah Produk Accessory -->
+  <div class="modal fade" id="addAccessoryModal" tabindex="-1" aria-labelledby="addAccessoryModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addProductModalLabel">Tambah Produk</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="addProductForm">
+        <form id="addAccessoryForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addAccessoryModalLabel">Tambah Produk Accessory</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
             <div class="mb-3">
-              <label for="productName" class="form-label">Nama Produk</label>
-              <input type="text" class="form-control" id="productName" name="productName" required>
+              <label for="accessoryName" class="form-label">Nama Produk</label>
+              <input type="text" class="form-control" id="accessoryName" name="productName" required>
             </div>
             <div class="mb-3">
-              <label for="productType" class="form-label">Jenis Hewan</label>
-              <input type="text" class="form-control" id="productType" name="productType" required>
+              <label for="accessoryType" class="form-label">Jenis Hewan</label>
+              <input type="text" class="form-control" id="accessoryType" name="productType" required>
             </div>
             <div class="mb-3">
-              <label for="productCategory" class="form-label">Kategori</label>
-              <input type="text" class="form-control" id="productCategory" name="productCategory" required>
+              <label for="accessoryCategory" class="form-label">Kategori</label>
+              <input type="text" class="form-control" id="accessoryCategory" name="productCategory" required>
             </div>
             <div class="mb-3">
-              <label for="productQuantity" class="form-label">Jumlah</label>
-              <input type="number" class="form-control" id="productQuantity" name="productQuantity" required>
+              <label for="accessoryQuantity" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="accessoryQuantity" name="productQuantity" required>
             </div>
             <div class="mb-3">
-              <label for="productPrice" class="form-label">Harga</label>
-              <input type="number" class="form-control" id="productPrice" name="productPrice" required>
+              <label for="accessoryPrice" class="form-label">Harga</label>
+              <input type="number" step="0.01" class="form-control" id="accessoryPrice" name="productPrice" required>
             </div>
             <div class="mb-3">
-              <label for="productImage" class="form-label">Foto Produk</label>
-              <input type="file" class="form-control" id="productImage" name="productImage">
+              <label for="accessoryImage" class="form-label">Gambar Produk</label>
+              <input type="file" class="form-control" id="accessoryImage" name="productImage" accept="image/*">
             </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-          </form>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
+  <!-- Modal Tambah Produk Makanan -->
+  <div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="addFoodModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="addFoodForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addFoodModalLabel">Tambah Produk Makanan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="foodName" class="form-label">Nama Produk</label>
+              <input type="text" class="form-control" id="foodName" name="productName" required>
+            </div>
+            <div class="mb-3">
+              <label for="foodType" class="form-label">Jenis Hewan</label>
+              <input type="text" class="form-control" id="foodType" name="productType" required>
+            </div>
+            <div class="mb-3">
+              <label for="foodCategory" class="form-label">Kategori</label>
+              <input type="text" class="form-control" id="foodCategory" name="productCategory" required>
+            </div>
+            <div class="mb-3">
+              <label for="foodQuantity" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="foodQuantity" name="productQuantity" required>
+            </div>
+            <div class="mb-3">
+              <label for="foodPrice" class="form-label">Harga</label>
+              <input type="number" step="0.01" class="form-control" id="foodPrice" name="productPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="foodImage" class="form-label">Gambar Produk</label>
+              <input type="file" class="form-control" id="foodImage" name="productImage" accept="image/*">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
   <script>
-    document.getElementById('addProductForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      const isAccessory = confirm(
-        "Apakah produk ini adalah aksesori? Tekan OK untuk aksesori, Cancel untuk makanan.");
+    function editProduct(productId) {
+      window.location.href = `/edit-product/${productId}`;
+    }
 
-      const apiEndpoint = isAccessory ? '/api/add-accessory' : '/api/add-food';
-
-      fetch(apiEndpoint, {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.result === 'success') {
-            alert('Produk berhasil ditambahkan');
-            location.reload();
-          } else {
-            alert('Gagal menambahkan produk: ' + data.msg);
+    function deleteProduct(productId) {
+      if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+        $.ajax({
+          url: `/api/delete-product/${productId}`,
+          type: 'DELETE',
+          success: function (response) {
+            if (response.result === 'success') {
+              alert('Produk berhasil dihapus');
+              location.reload();
+            } else {
+              alert('Gagal menghapus produk: ' + response.msg);
+            }
+          },
+          error: function () {
+            alert('Terjadi kesalahan saat menghapus produk');
           }
-        })
-        .catch(error => {
-          console.error('Error adding product:', error);
-          alert('Terjadi kesalahan saat menambahkan produk');
         });
+      }
+    }
+
+    $(document).ready(function () {
+      $('#addAccessoryForm').submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        $.ajax({
+          url: '/api/add-accessory',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            if (response.result === 'success') {
+              alert('Produk berhasil ditambahkan');
+              location.reload();
+            } else {
+              alert('Gagal menambahkan produk');
+            }
+          },
+          error: function () {
+            alert('Terjadi kesalahan saat menambahkan produk');
+          }
+        });
+      });
+
+      $('#addFoodForm').submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        $.ajax({
+          url: '/api/add-food',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            if (response.result === 'success') {
+              alert('Produk berhasil ditambahkan');
+              location.reload();
+            } else {
+              alert('Gagal menambahkan produk');
+            }
+          },
+          error: function () {
+            alert('Terjadi kesalahan saat menambahkan produk');
+          }
+        });
+      });
     });
   </script>
 </body>
