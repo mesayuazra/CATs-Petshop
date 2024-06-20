@@ -946,7 +946,7 @@ section {
 
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
-  background: #FFEF61;
+  background: #C73420;
   color: #fff;
 }
 
@@ -970,7 +970,7 @@ section {
   z-index: 3;
   right: 15px;
   transition: all 0.3s;
-  background: rgba(55, 81, 126, 0.8);
+  background: rgba(113, 40, 27, 0.8);
   padding: 10px 15px;
 }
 
@@ -1635,7 +1635,7 @@ section {
 --------------------------------------------------------------*/
 #footer {
   font-size: 14px;
-  background: #E75319;
+  background: #FFDE59;
 }
 
 #footer .footer-newsletter {
@@ -1763,7 +1763,8 @@ section {
 #footer .footer-bottom {
   padding-top: 30px;
   padding-bottom: 30px;
-  color: #fff;
+  color: #E75319;
+  background-color: #FFDE59;
 }
 
 #footer .copyright {

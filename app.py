@@ -124,7 +124,7 @@ def register():
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-    users = list(db.users.find({}, {'_id': 0, 'pet_id': 1, 'pet_name': 1, 'registration_date': 1}))
+    users = list(db.users.find({}, {'_id': 0, 'email': 1, 'pet_name': 1, 'registration_date': 1}))
     return render_template('dashboard.html', users=users)
 
 @app.route('/get_user_data', methods=['GET'])
@@ -325,14 +325,10 @@ def delete_product(product_id):
     except Exception as e:
         return jsonify({'result': 'failure', 'msg': str(e)})
 
-@app.route('/tambahProduk', methods=['GET', 'POST'])
-def tambahProduk():
-    return render_template('addProd.html')
-
-
-@app.route('/hapusProduk', methods=['GET', 'POST'])
-def hapusProduk():
-    return render_template('deleteProd.html')
+@app.route('/manageuser', methods=['GET', 'POST'])
+def manageuser():
+    users = list(db.users.find({}, {'_id': 0, 'email': 1, 'pet_name': 1, 'registration_date': 1, 'phone': 1, 'address': 1, 'profile_photo': 1}))
+    return render_template('usManage.html', users=users)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
