@@ -334,5 +334,97 @@ def tambahProduk():
 def hapusProduk():
     return render_template('deleteProd.html')
 
+
+#@app.route('/submit_sidebar_grooming_reservation', methods=['POST'])
+#def submit_sidebar_grooming_reservation():
+#    if request.method == 'POST':
+#        try:
+#            nama_peliharaan = request.form['nama_peliharaan']
+#            layanan_grooming = request.form['layanan_grooming']
+#            waktu_grooming = request.form['waktu_grooming']
+#            antar_jemput = request.form['antar_jemput']
+
+#            # Simpan data reservasi grooming ke MongoDB
+#            db.reservasi_grooming.insert_one({
+#                'nama_peliharaan': nama_peliharaan,
+#                'layanan_grooming': layanan_grooming,
+#                'waktu_grooming': waktu_grooming,
+#                'antar_jemput': antar_jemput
+#            })
+
+#            return jsonify({'result': 'success', 'msg': 'Reservasi Grooming berhasil disimpan'})
+        
+#        except Exception as e:
+#            return jsonify({'result': 'failure', 'msg': str(e)}), 400
+
+@app.route('/Groomingreserve', methods=['GET'])
+def Bookgrooming():
+    grooming_list = list(db.reservasi_grooming.find({}))
+    return render_template('groomReserve.html', grooming=grooming_list)
+
+@app.route('/api/add-groomingReserve', methods=['POST'])
+def add_GReserve():
+    if request.method == 'POST':
+        try:
+            name = request.form['groomingName']
+            type = request.form['groomingType']
+            services = request.form['groomingServices']
+            waktu = request.form['groomingSchedule']
+            antar_jemput = request.form['antar_jemput']
+
+          
+            new_reservation = {
+                "name": name,
+                "type": type,
+                "services": services,
+                "waktu": waktu,
+                "antar_jemput": antar_jemput
+            }
+            # Assuming db is your MongoDB client and accessories is your collection
+            db.reservasi_grooming.insert_one(new_reservation)
+
+            return jsonify({'result': 'success', 'msg': 'Reservasi Grooming berhasil disimpan'})
+        
+        except Exception as e:
+            return jsonify({"result": "error", "message": str(e)}), 400  # Return error message and HTTP status 400 (Bad Request) for client-side debugging
+
+
+@app.route('/edit-jadwal/<groom_id>', methods=['POST'])
+def edit_jadwal(groom_id):
+
+        try:
+            grooming_name = request.form['groomingName']
+            grooming_type = request.form['groomingType']
+            grooming_services = request.form['groomingServices']
+            grooming_schedule = request.form['groomingSchedule']
+            antar_jemput = request.form['antar_jemput']
+
+            update_data = {
+                'name': grooming_name,
+                'type': grooming_type,
+                'services': grooming_services,
+                'waktu': grooming_schedule,
+                'antar_jemput' : antar_jemput
+            }
+
+            result = db.reservasi_grooming.update_one({'_id': ObjectId(groom_id)}, {'$set': update_data})
+
+            if result.modified_count == 1:
+                return jsonify({'result': 'success', 'msg': 'Product updated successfully'})
+            return jsonify({'result': 'failure', 'msg': 'Product not found or no changes made'})
+        except Exception as e:
+            return jsonify({'result': 'failure', 'msg': str(e)})
+
+        
+@app.route('/api/delete-jadwal/<groom_id>', methods=['DELETE'])
+def delete_jadwal(groom_id):
+    try:
+        result = db.reservasi_grooming.delete_one({'_id': ObjectId(groom_id)})
+        if result.deleted_count == 1:
+            return jsonify({'result': 'success', 'msg': 'Reservation deleted successfully'})
+    except Exception as e:
+        return jsonify({'result': 'failure', 'msg': str(e)})
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
