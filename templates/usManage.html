@@ -72,10 +72,10 @@
                 <td>
                   {% if user.profile_photo %}
                   <img src="{{ url_for('uploaded_file', filename=user.profile_photo) }}" class="profile-image"
-                    alt="Profile Image">
+                    alt="Profile Image" width="50px">
                   {% else %}
                   <img src="{{ url_for('static', filename='images/default.png') }}" class="product-image"
-                    alt="Default Image">
+                    alt="Default Image" width="50px">
                   {% endif %}
                 </td>
                 <td>{{ user.email }}</td>
