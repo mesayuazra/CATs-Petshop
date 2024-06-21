@@ -39,7 +39,6 @@ def food():
     food_list = list(db.food.find({}))
     return render_template('food.html', food=food_list)
 
-
 @app.route('/accessories', methods=['GET'])
 def accessories():
     accessories = list(db.accessories.find({}))
@@ -88,7 +87,7 @@ def login():
             session['logged_in'] = True
             session['username'] = username
             return jsonify({'result': 'success', 'msg': 'success'})
-        return jsonify({'result': 'failure', 'msg': 'Username or password incorrect'})
+        return jsonify({'result': 'failure', 'msg': 'Email atau password salah'})
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -103,12 +102,12 @@ def register():
         
         email_regex = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         if not re.match(email_regex, email):
-            return jsonify({'result': 'failure', 'msg': 'Invalid email format'})
+            return jsonify({'result': 'failure', 'msg': 'Format email tidak valid'})
         if password != confirm_password:
-            return jsonify({'result': 'failure', 'msg': 'Passwords do not match'})
+            return jsonify({'result': 'failure', 'msg': 'Password salah'})
         hashed_password = generate_password_hash(password)
         if db.users.find_one({'email': email}):
-            return jsonify({'result': 'failure', 'msg': 'Email already registered'})
+            return jsonify({'result': 'failure', 'msg': 'Email sudah terdaftar'})
         
         registration_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db.users.insert_one({
@@ -135,7 +134,7 @@ def get_user_data():
     user = db.users.find_one({'email': username}, {'_id': 0, 'pet_id': 1, 'pet_name': 1, 'address': 1, 'phone': 1, 'email': 1, 'profile_photo': 1})
     if user:
         return jsonify(user), 200
-    return jsonify({'result': 'failure', 'msg': 'User not found'}), 404
+    return jsonify({'result': 'failure', 'msg': 'User tidak ditemukan'}), 404
 
 @app.route('/profile', methods=['GET'])
 def profile():
@@ -144,7 +143,7 @@ def profile():
     username = session['username']
     user = db.users.find_one({'email': username})
     if not user:
-        return jsonify({'result': 'failure', 'msg': 'User not found'})
+        return jsonify({'result': 'failure', 'msg': 'User tidak ditemukan'})
     profile_photo_url = user.get('profile_photo', None)
     return render_template('profile.html', user=user, profile_photo_url=profile_photo_url)
 
@@ -162,12 +161,12 @@ def save_profile_photo():
         username = session['username']
         db.users.update_one({'email': username}, {'$set': {'profile_photo': filename}})
         return jsonify({'result': 'success', 'file_path': file_path}), 200
-    return jsonify({'result': 'failure', 'msg': 'File type not allowed'}), 400
+    return jsonify({'result': 'failure', 'msg': 'Tipe file tidak diperbolehkan'}), 400
 
 @app.route('/update_profile', methods=['POST'])
 def update_profile():
     if 'logged_in' not in session or not session['logged_in']:
-        return jsonify({'result': 'failure', 'msg': 'User not logged in'}), 401
+        return jsonify({'result': 'failure', 'msg': 'User belum log in'}), 401
     data = request.json
     username = session['username']
     update_data = {
@@ -308,8 +307,8 @@ def edit_product(product_id):
                 result = db.food.update_one({'_id': ObjectId(product_id)}, {'$set': update_data})
 
             if result.modified_count == 1:
-                return jsonify({'result': 'success', 'msg': 'Product updated successfully'})
-            return jsonify({'result': 'failure', 'msg': 'Product not found or no changes made'})
+                return jsonify({'result': 'success', 'msg': 'Produk berhasil diupdate'})
+            return jsonify({'result': 'failure', 'msg': 'Produk tidak ditemukan atau update tidak berhasil'})
         except Exception as e:
             return jsonify({'result': 'failure', 'msg': str(e)})
         
@@ -320,8 +319,8 @@ def delete_product(product_id):
         if result.deleted_count == 0:
             result = db.food.delete_one({'_id': ObjectId(product_id)})
             if result.deleted_count == 0:
-                return jsonify({'result': 'failure', 'msg': 'Product not found'})
-        return jsonify({'result': 'success', 'msg': 'Product deleted successfully'})
+                return jsonify({'result': 'failure', 'msg': 'Produk tidak ditemukan'})
+        return jsonify({'result': 'success', 'msg': 'Produk berhasil terhapus'})
     except Exception as e:
         return jsonify({'result': 'failure', 'msg': str(e)})
 
@@ -329,6 +328,18 @@ def delete_product(product_id):
 def manageuser():
     users = list(db.users.find({}, {'_id': 0, 'email': 1, 'pet_name': 1, 'registration_date': 1, 'phone': 1, 'address': 1, 'profile_photo': 1}))
     return render_template('usManage.html', users=users)
+
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    email = request.json.get('email')
+    if email:
+        result = db.users.delete_one({'email': email})
+        if result.deleted_count == 1:
+            return jsonify({'success': True, 'message': 'User sukses terhapus'}), 200
+        else:
+            return jsonify({'success': False, 'message': 'Penghapusan user gagal'}), 404
+    else:
+        return jsonify({'success': False, 'message': 'Email parameter tidak ada'}), 400
 
 
 #@app.route('/submit_sidebar_grooming_reservation', methods=['POST'])
@@ -406,8 +417,8 @@ def edit_jadwal(groom_id):
             result = db.reservasi_grooming.update_one({'_id': ObjectId(groom_id)}, {'$set': update_data})
 
             if result.modified_count == 1:
-                return jsonify({'result': 'success', 'msg': 'Product updated successfully'})
-            return jsonify({'result': 'failure', 'msg': 'Product not found or no changes made'})
+                return jsonify({'result': 'success', 'msg': 'Produk sukses diupdate'})
+            return jsonify({'result': 'failure', 'msg': 'Produk tidak ditemukan atau update tidak berhasil'})
         except Exception as e:
             return jsonify({'result': 'failure', 'msg': str(e)})
 
@@ -417,10 +428,9 @@ def delete_jadwal(groom_id):
     try:
         result = db.reservasi_grooming.delete_one({'_id': ObjectId(groom_id)})
         if result.deleted_count == 1:
-            return jsonify({'result': 'success', 'msg': 'Reservation deleted successfully'})
+            return jsonify({'result': 'success', 'msg': 'Reservasi berhasil terhapus'})
     except Exception as e:
         return jsonify({'result': 'failure', 'msg': str(e)})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
