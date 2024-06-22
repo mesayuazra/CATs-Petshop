@@ -379,7 +379,6 @@ def add_GReserve():
             waktu = request.form['groomingSchedule']
             antar_jemput = request.form['antar_jemput']
 
-          
             new_reservation = {
                 "name": name,
                 "type": type,
