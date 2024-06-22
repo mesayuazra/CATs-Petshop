@@ -128,7 +128,7 @@
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="editGroomResForm">
+                    <form id="editGroomResForm" method="POST">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editGroomResModalLabel">Edit Reservasi Grooming</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary" onclick="submitEdit()">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -173,9 +173,11 @@
 
         <script>
             function editJadwal(groomId) {
+                console.log('Edit button clicked for ID:', groomId);
                 fetch(`/edit-grooming-reservation/${groomId}`)
                     .then(response => response.json())
                     .then(data => {
+                        console.log('Data received from server:', data);
                         // Populate the form fields with the reservation details
                         $('#editGroomingName').val(data.name);
                         $('#editGroomingType').val(data.type);
@@ -183,9 +185,16 @@
                         $('#editGroomingSchedule').val(data.waktu);
                         $('#editAntarJemput').val(data.antar_jemput);
 
+                        $('#editGroomResForm').attr('action', `/edit-grooming-reservation/${groomId}`);
+            
                         // Show the modal
                         $('#editGroomResModal').modal('show');
-                    });
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+            function submitEdit() {
+                alert('Data reservasi grooming berhasil diedit')
             }
 
             function deleteJadwal(groomId) {

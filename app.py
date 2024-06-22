@@ -405,8 +405,9 @@ def edit_grooming_reservation(groom_id):
         # Retrieve the grooming reservation details
         reservation = db.reservasi_grooming.find_one({'_id': ObjectId(groom_id)})
         if not reservation:
-            return 'Reservation not found', 404
-        return render_template('groomReserve.html', reservation=reservation)
+            return jsonify({'error': 'Reservation not found'}), 404
+        reservation['_id'] = str(reservation['_id'])
+        return jsonify(reservation)
     elif request.method == 'POST':
         try:
             grooming_name = request.form['groomingName']
@@ -426,12 +427,10 @@ def edit_grooming_reservation(groom_id):
             result = db.reservasi_grooming.update_one({'_id': ObjectId(groom_id)}, {'$set': update_data})
 
             if result.modified_count == 1:
-                return jsonify({'result': 'success', 'msg': 'Reservation updated successfully'})
-            return jsonify({'result': 'failure', 'msg': 'Reservation not found or update failed'})
+                return redirect(url_for('Bookgrooming'))
+            return jsonify({'result': 'gagal', 'msg': 'Reservasi tidak ditemukan atau gagal'})
         except Exception as e:
             return jsonify({'result': 'failure', 'msg': str(e)})
-
-
         
 @app.route('/api/delete-jadwal/<groom_id>', methods=['DELETE'])
 def delete_jadwal(groom_id):
