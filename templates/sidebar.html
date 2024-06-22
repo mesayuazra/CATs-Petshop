@@ -15,7 +15,7 @@
     function confirmLogout(event) {
       // Mencegah default behavior dari tautan <a> (navigasi)
       event.preventDefault();
-      
+
       // Menampilkan dialog konfirmasi
       if (confirm('Apakah Anda yakin ingin keluar?')) {
         // Jika pengguna menekan tombol OK (ya), lakukan logout
@@ -25,10 +25,11 @@
         return false;
       }
     }
-    
+
     function log_out() {
-      window.location.href='/'
+      window.location.href = '/'
     }
+
   </script>
 </head>
 
@@ -79,8 +80,9 @@
                 Produk
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Groomingreserve">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="groomingDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-droplet"
                   viewBox="0 0 16 16" stroke-width="2">
                   <path fill-rule="evenodd"
@@ -90,6 +92,10 @@
                 </svg>
                 Grooming
               </a>
+              <ul class="dropdown-menu" aria-labelledby="groomingDropdown">
+                <li><a class="dropdown-item" href="/Groomingreserve">Reservasi Grooming</a></li>
+                <li><a class="dropdown-item" href="/manageGrooming">Atur Layanan Grooming</a></li>
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">
