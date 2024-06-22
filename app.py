@@ -341,29 +341,6 @@ def delete_user():
     else:
         return jsonify({'success': False, 'message': 'Email parameter tidak ada'}), 400
 
-
-#@app.route('/submit_sidebar_grooming_reservation', methods=['POST'])
-#def submit_sidebar_grooming_reservation():
-#    if request.method == 'POST':
-#        try:
-#            nama_peliharaan = request.form['nama_peliharaan']
-#            layanan_grooming = request.form['layanan_grooming']
-#            waktu_grooming = request.form['waktu_grooming']
-#            antar_jemput = request.form['antar_jemput']
-
-#            # Simpan data reservasi grooming ke MongoDB
-#            db.reservasi_grooming.insert_one({
-#                'nama_peliharaan': nama_peliharaan,
-#                'layanan_grooming': layanan_grooming,
-#                'waktu_grooming': waktu_grooming,
-#                'antar_jemput': antar_jemput
-#            })
-
-#            return jsonify({'result': 'success', 'msg': 'Reservasi Grooming berhasil disimpan'})
-        
-#        except Exception as e:
-#            return jsonify({'result': 'failure', 'msg': str(e)}), 400
-
 @app.route('/Groomingreserve', methods=['GET'])
 def Bookgrooming():
     grooming_list = list(db.reservasi_grooming.find({}))
@@ -395,9 +372,42 @@ def add_GReserve():
             return jsonify({"result": "error", "message": str(e)}), 400  # Return error message and HTTP status 400 (Bad Request) for client-side debugging
 
 
-@app.route('/edit-jadwal/<groom_id>', methods=['POST'])
-def edit_jadwal(groom_id):
+#@app.route('/api/edit-jadwal/<groom_id>', methods=['POST'])
+#def edit_jadwal(groom_id):
 
+#        try:
+#            grooming_name = request.form['groomingName']
+#            grooming_type = request.form['groomingType']
+#            grooming_services = request.form['groomingServices']
+#            grooming_schedule = request.form['groomingSchedule']
+#            antar_jemput = request.form['antar_jemput']
+
+
+#            update_data = {
+#                'name': grooming_name,
+#                'type': grooming_type,
+#                'services': grooming_services,
+#                'waktu': grooming_schedule,
+#                'antar_jemput' : antar_jemput
+#            }
+
+#            result = db.reservasi_grooming.update_one({'_id': ObjectId(groom_id)}, {'$set': update_data})
+
+#            if result.modified_count == 1:
+#                return jsonify({'result': 'success', 'msg': 'Produk sukses diupdate'})
+#            return jsonify({'result': 'failure', 'msg': 'Produk tidak ditemukan atau update tidak berhasil'})
+#        except Exception as e:
+#            return jsonify({'result': 'failure', 'msg': str(e)})
+        
+@app.route('/edit-grooming-reservation/<groom_id>', methods=['GET', 'POST'])
+def edit_grooming_reservation(groom_id):
+    if request.method == 'GET':
+        # Retrieve the grooming reservation details
+        reservation = db.reservasi_grooming.find_one({'_id': ObjectId(groom_id)})
+        if not reservation:
+            return 'Reservation not found', 404
+        return render_template('groomReserve.html', reservation=reservation)
+    elif request.method == 'POST':
         try:
             grooming_name = request.form['groomingName']
             grooming_type = request.form['groomingType']
@@ -410,16 +420,17 @@ def edit_jadwal(groom_id):
                 'type': grooming_type,
                 'services': grooming_services,
                 'waktu': grooming_schedule,
-                'antar_jemput' : antar_jemput
+                'antar_jemput': antar_jemput
             }
 
             result = db.reservasi_grooming.update_one({'_id': ObjectId(groom_id)}, {'$set': update_data})
 
             if result.modified_count == 1:
-                return jsonify({'result': 'success', 'msg': 'Produk sukses diupdate'})
-            return jsonify({'result': 'failure', 'msg': 'Produk tidak ditemukan atau update tidak berhasil'})
+                return jsonify({'result': 'success', 'msg': 'Reservation updated successfully'})
+            return jsonify({'result': 'failure', 'msg': 'Reservation not found or update failed'})
         except Exception as e:
             return jsonify({'result': 'failure', 'msg': str(e)})
+
 
         
 @app.route('/api/delete-jadwal/<groom_id>', methods=['DELETE'])
