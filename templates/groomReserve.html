@@ -141,8 +141,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="animalType" class="form-label">Jenis Hewan</label>
-                                <input type="text" class="form-control" id="editGroomingType" name="groomingType"
-                                    required>
+                                <select class="form-control" id="editGroomingType" name="groomingType">
+                                    <option value="KUCING">KUCING</option>
+                                    <option value="ANJING KECIL">ANJING KECIL</option>
+                                    <option value="ANJING DEWASA">ANJING BESAR</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="groomingServices" class="form-label">Layanan Grooming</label>
@@ -186,7 +189,7 @@
                         $('#editAntarJemput').val(data.antar_jemput);
 
                         $('#editGroomResForm').attr('action', `/edit-grooming-reservation/${groomId}`);
-            
+
                         // Show the modal
                         $('#editGroomResModal').modal('show');
                     })
@@ -229,10 +232,10 @@
                         contentType: false,
                         success: function (response) {
                             if (response.result === 'success') {
-                                alert('Reservasi sudah dicatat');
+                                alert('Reservasi berhasil disimpan');
                                 location.reload();
                             } else {
-                                alert('Gagal mencatat resrvasi');
+                                alert('Gagal mencatat reservasi');
                             }
                         },
                         error: function () {

@@ -7,8 +7,7 @@
 
   <title>Accessories</title>
   <!-- Include your CSS and other meta tags -->
-  <link href="../static/img/favicon.png" rel="icon">
-  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
 
   <!-- Google Fonts -->
   <link
@@ -32,17 +31,73 @@
 <body>
   {% include 'navbar.html' %}
 
+    <!-- ======= Food Section ======= -->
+    <section id="cta" class="cta" style="background:#FFDE59;">
+      <div class="container" data-aos="zoom-in" style="padding: 50px 0 30px 0;">
+  
+        <div class="row align-items-center">
+          <div class="col-lg-9 text-center text-lg-start">
+            <h3>Aksesoris</h3>
+            <p>Tersedia berbagai macam jenis aksesoris dengan kualitas terbaik yang nyaman dipakai anabul</p>
+          </div>
+          <!-- <div class="col-lg-6 text-center text-lg-start">
+              <input type="text" class="form-control me-2 search-bar" id="searchInput" placeholder="Search...">
+              <button type="submit" class="btn btn-outline-primary btn-sm">Search</button> -->
+          <div class="col-lg-3 text-center text-lg-end mt-2">
+            <img src="{{ url_for('static', filename='img/accimg.png') }}" alt="">
+          </div>
+        </div>
+      </div>
+    </section><!-- End Cta Section -->
+  
+    <section id="cliens" class="cliens section-bg" style="background-color: white;">
+      <div class="container">
+  
+        <div class="row aos-init aos-animate" data-aos="zoom-in">
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{{ url_for('static', filename='img/clients/royal_canin.png') }}" class="img-fluid" alt="">
+          </div>
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{{ url_for('static', filename='img/clients/friskies.png') }}" class="img-fluid" alt="">
+          </div>
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{{ url_for('static', filename='img/clients/pedigree.png') }}" class="img-fluid" alt="">
+          </div>
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{{ url_for('static', filename='img/clients/whiskas.png') }}" class="img-fluid" alt="">
+          </div>
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="../static/img/clients/barkbox.png" class="img-fluid" alt="">
+          </div>
+  
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="../static/img/clients/furbo.png" class="img-fluid" alt="">
+          </div>
+  
+        </div>
+  
+      </div>
+    </section>
+  
+    <div class="d-flex justify-content-center align-items-center mb-3" style="width: 500px; margin: 0 auto;">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Cari..." aria-label="Input" aria-describedby="button-addon1">
+        <button class="btn btn-outline-primary" type="button" id="button-addon1">Cari</button>
+      </div>
+    </div>
+
   <!-- ======= Pricing Section ======= -->
-  <section id="pricing" class="pricing" style="background:#FFDE59;">
+  <section id="pricing" class="pricing" style="background:#f3f5fa;">
     <div class="container" data-aos="fade-up">
 
-      <div class="section-title">
-        <input type="text" class="form-control mt-2 mb-3 search-bar" id="searchInput" placeholder="Search...">
-      </div>
-
-      <div class="card-container">
+      <div class="card-container row">
         {% for accessory in accessories %}
-        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card col-lg-6 col-12 mb-4" data-aos="zoom-in" data-aos-delay="200">
           <img src="{{ url_for('static', filename='uploads/' ~ accessory['image']) }}" alt="Accessory Image">
           <div class="tag">{{ accessory['category'] }}</div>
           <div class="card-body">
@@ -52,7 +107,7 @@
               <span class="card-price">Rp {{ accessory['price'] }}</span>
               <span class="card-stock">Sisa {{ accessory['quantity'] }}</span>
             </div>
-            <a href="#" class="btn btn-primary">Selengkapnya</a>
+            <a class="btn btn-danger" href="#" onclick="openWhatsApp('{{ accessory['name'] }}')">Pesan</a>
           </div>
         </div>
         {% endfor %}
@@ -68,6 +123,24 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
+
+      <script>
+        function openWhatsApp(productName) {
+          // Nomor WhatsApp yang dituju
+          var phoneNumber = '6285884693217';
+          // Pesan yang akan dikirimkan
+          var message = 'Halo, saya tertarik dengan produk aksesoris ' + productName + '.';
+        
+          // Encode pesan untuk URL
+          var encodedMessage = encodeURIComponent(message);
+        
+          // URL WhatsApp dengan nomor dan pesan yang sudah diencode
+          var whatsappURL = 'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=' + encodedMessage;
+        
+          // Buka link WhatsApp dalam tab baru
+          window.open(whatsappURL);
+        }
+      </script>
 
   <!-- Vendor JS Files -->
   <script src="../static/vendor/aos/aos.js"></script>
