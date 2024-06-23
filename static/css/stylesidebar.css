@@ -16,19 +16,13 @@ header .navbar-nav, header .navbar-brand {
 }
 
 .sidebar {
-    background-color: #279548 !important; /* Change sidebar background color */
-    color: #ffffff; /* Optional: change text color to white for better readability */
-}
-
-/* Change sidebar background color */
-.sidebar {
-    background-color: #279548 !important;
+    background-color: #ab493c !important; /* Change sidebar background color */
     color: #ffffff; /* Optional: change text color to white for better readability */
 }
 
 /* Change navbar background color */
 .navbar {
-    background-color: #279548 !important;
+    background-color:  #C73420 !important;
     color: #ffffff; /* Optional: change text color to white for better readability */
 }
 

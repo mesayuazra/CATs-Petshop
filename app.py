@@ -6,6 +6,7 @@ import re
 import os
 from werkzeug.utils import secure_filename 
 from datetime import datetime
+from collections import defaultdict
 
 password = 'sparta'
 cxn_str = f'mongodb://test:{password}@ac-6skehua-shard-00-00.eqimsea.mongodb.net:27017,ac-6skehua-shard-00-01.eqimsea.mongodb.net:27017,ac-6skehua-shard-00-02.eqimsea.mongodb.net:27017/?ssl=true&replicaSet=atlas-dad2x6-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0 '
@@ -124,7 +125,23 @@ def register():
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     users = list(db.users.find({}, {'_id': 0, 'email': 1, 'pet_name': 1, 'registration_date': 1}))
-    return render_template('dashboard.html', users=users)
+    
+    food_list = list(db.food.find({}))
+    food_counts = defaultdict(int)
+    for food in food_list:
+        food_counts[food['name']] += 1
+        
+    accessories_list = list(db.accessories.find({}))
+    acc_counts = defaultdict(int)
+    for accessory in accessories_list:
+        acc_counts[accessory['name']] += 1
+        
+    grooming_list = list(db.reservasi_grooming.find({}))
+    groomres_counts = defaultdict(int)
+    for grooming in grooming_list:
+        groomres_counts[grooming['name']] += 1
+    return render_template('dashboard.html', users=users, accessories_list=accessories_list, acc_counts=acc_counts, food_list=food_list, 
+                           food_counts=food_counts, groomres_counts=groomres_counts, grooming_list=grooming_list)
 
 @app.route('/get_user_data', methods=['GET'])
 def get_user_data():

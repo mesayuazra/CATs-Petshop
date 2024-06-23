@@ -12,53 +12,8 @@
 
   <!-- Favicons -->
   <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
-  
-  <style>
-    body {
-      background-color: #f4af41 !important;
-    }
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styledashboard.css') }}">
 
-    .pagination {
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .product-image {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-    }
-
-    table th,
-    table td {
-      font-weight: bold;
-      /* Mempertebal tulisan di dalam tabel */
-    }
-
-    table th,
-    table td {
-      border: 2px solid black;
-      /* Warna dan ketebalan garis sel */
-      padding: 8px;
-      /* Jarak antara teks dan tepi sel */
-      text-align: center;
-      /* Pusatkan teks dalam sel */
-      color: #000;
-      /* Warna teks dalam sel */
-    }
-
-    table th {
-      background-color: #f2f2f2;
-      /* Warna latar belakang header tabel */
-      font-weight: bold;
-      /* Mempertebal teks header */
-    }
-
-    table td {
-      background-color: #fff;
-      /* Warna latar belakang sel tabel */
-    }
-  </style>
 </head>
 
 <body>
@@ -78,7 +33,7 @@
       </div>
       <section class="daftar-produk">
         <div class="table-responsive">
-          <table class="table table-sm table-hover" id="accessoryTable">
+          <table class="table table-md table-hover" id="accessoryTable">
             <thead>
               <tr>
                 <th scope="col">NO</th>
