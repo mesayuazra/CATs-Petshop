@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Products</title>
+    <title>Manage Layanan Grooming</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
 </head>
+
 <body>
 
     {% include 'sidebar.html' %}
@@ -26,78 +28,52 @@
                         <button class="btn btn-primary edit-btn" data-productid="{{ product._id }}">Edit</button>
                         <button class="btn btn-success save-btn d-none" data-productid="{{ product._id }}">Save</button>
                     </div>
+    {% include 'sidebar.html' %}
+
+    <div class="section-title" style="padding: 60px 0 60px 0;">
+        <div class="row">
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="box">
+                    <h4 style="color: #E75319"><strong>Anjing Besar</strong></h4>
+                    <ul class="huruf-tebal">
+                        <li><i class="bx bx-check"></i> Dry Grooming [Mandi Kering]</li>
+                        <li><i class="bx bx-check"></i> Basic Grooming </li>
+                        <li><i class="bx bx-check"></i> Basic Grooming + Anti kutu/Anti Jamur</li>
+                        <li><i class="bx bx-check"></i> Grooming Lengkap</li>
+                        <li><i class="bx bx-check"></i> Salon</li>
+                    </ul>
                 </div>
             </div>
-            {% endfor %}
+
+            <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+                <div class="box">
+                    <h4 style="color: #E75319"><strong>Anjing Kecil</strong></h4>
+                    <ul class="huruf-tebal">
+                        <li><i class="bx bx-check"></i> Dry Grooming [Mandi Kering]</li>
+                        <li><i class="bx bx-check"></i> Basic Grooming </li>
+                        <li><i class="bx bx-check"></i> Basic Grooming + Anti kutu/Anti Jamur</li>
+                        <li><i class="bx bx-check"></i> Grooming Lengkap</li>
+                        <li><i class="bx bx-check"></i> Salon</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="box">
+                    <h4 style="color: #E75319"><strong>Kucing</strong></h4>
+                    <ul class="huruf-tebal">
+                        <li><i class="bx bx-check"></i> Dry Grooming [Mandi Kering]</li>
+                        <li><i class="bx bx-check"></i> Basic Grooming </li>
+                        <li><i class="bx bx-check"></i> Basic Grooming + Anti kutu/Anti Jamur</li>
+                        <li><i class="bx bx-check"></i> Grooming Lengkap</li>
+                        <li><i class="bx bx-check"></i> Salon</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Handle Edit button click
-            $('.edit-btn').click(function() {
-                var card = $(this).closest('.card-body');
-                var saveBtn = card.find('.save-btn');
-                var editBtn = card.find('.edit-btn');
-
-                // Toggle buttons visibility
-                saveBtn.removeClass('d-none');
-                editBtn.addClass('d-none');
-
-                // Make fields editable
-                card.find('p.card-text').each(function() {
-                    var text = $(this).text().trim();
-                    var input = $('<input class="form-control" value="' + text + '">');
-                    $(this).replaceWith(input);
-                });
-            });
-
-            // Handle Save button click
-            $('.save-btn').click(function() {
-                var card = $(this).closest('.card-body');
-                var saveBtn = card.find('.save-btn');
-                var editBtn = card.find('.edit-btn');
-
-                // Toggle buttons visibility
-                saveBtn.addClass('d-none');
-                editBtn.removeClass('d-none');
-
-                // Extract updated values
-                var product_id = $(this).data('productid');
-                var updatedData = {
-                    product_id: product_id,
-                    name: card.find('input:eq(0)').val(),
-                    type: card.find('input:eq(1)').val(),
-                    category: card.find('input:eq(2)').val(),
-                    quantity: card.find('input:eq(3)').val(),
-                    price: card.find('input:eq(4)').val()
-                };
-
-                // Perform AJAX request to update product
-                $.ajax({
-                    url: '/api/update-product/' + product_id,
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(updatedData),
-                    success: function(response) {
-                        alert('Product updated successfully');
-                        // You can optionally refresh the page or update specific parts
-                        // of the page based on your needs.
-                    },
-                    error: function(xhr, status, error) {
-                        alert('Failed to update product: ' + error);
-                    }
-                });
-
-                // Restore original text display
-                card.find('input').each(function() {
-                    var value = $(this).val();
-                    var p = $('<p class="card-text">' + value + '</p>');
-                    $(this).replaceWith(p);
-                });
-            });
-        });
-    </script>
 </body>
+
 </html>

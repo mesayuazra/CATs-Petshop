@@ -15,10 +15,38 @@
             text-align: center;
         }
 
-        .product-image {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
+        body {
+            background-color: #f4af41 !important;
+        }
+
+        table th,
+        table td {
+            font-weight: bold;
+            /* Mempertebal tulisan di dalam tabel */
+        }
+
+        table th,
+        table td {
+            border: 2px solid black;
+            /* Warna dan ketebalan garis sel */
+            padding: 8px;
+            /* Jarak antara teks dan tepi sel */
+            text-align: center;
+            /* Pusatkan teks dalam sel */
+            color: #000;
+            /* Warna teks dalam sel */
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            /* Warna latar belakang header tabel */
+            font-weight: bold;
+            /* Mempertebal teks header */
+        }
+
+        table td {
+            background-color: #fff;
+            /* Warna latar belakang sel tabel */
         }
     </style>
 </head>
@@ -26,14 +54,15 @@
 <body>
     {% include 'sidebar.html' %}
 
-    <div class="container">
+    <div class="container-fluid">
         <!-- Bagian Grooming Reservation -->
         <div class="mt-4">
             <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Grooming Reservation</h1>
                 <div>
-                    <input class="form-control d-inline w-auto" type="text" id="searchNamaHewan" placeholder="Search"
-                        aria-label="Search">
+                    <input class="form-control d-inline w-auto" type="text" id="searchByTime"
+                        placeholder="Search by Time" aria-label="Search by Time">
+
                     <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal"
                         data-bs-target="#addGroomResModal">+
                         Jadwal Grooming</button>
@@ -60,7 +89,7 @@
                                 <td>{{ groomingRes.name }}</td>
                                 <td>{{ groomingRes.type }}</td>
                                 <td>{{ groomingRes.services }}</td>
-                                <td>{{ groomingRes.waktu }}</td>
+                                <td class="time">{{ groomingRes.waktu.replace('T', ' ') }}</td>
                                 <td>{{ groomingRes.antar_jemput }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary"
@@ -245,7 +274,22 @@
                 });
             });
 
+            $(document).ready(function () {
+                // Fungsi untuk melakukan pencarian berdasarkan waktu
+                $('#searchByTime').on('keyup', function () {
+                    var searchText = $(this).val().toLowerCase();
 
+                    // Loop melalui setiap baris tabel dan sembunyikan yang tidak sesuai dengan pencarian
+                    $('#reservationTable tbody tr').each(function () {
+                        var timeText = $(this).find('.time').text().toLowerCase();
+                        if (timeText.includes(searchText)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            });
 
         </script>
 </body>

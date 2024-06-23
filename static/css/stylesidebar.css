@@ -9,3 +9,30 @@ body {
 header .navbar-nav, header .navbar-brand {
   padding: 15px 30px;
 }
+
+#sidebarMenu {
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar {
+    background-color: #279548 !important; /* Change sidebar background color */
+    color: #ffffff; /* Optional: change text color to white for better readability */
+}
+
+/* Change sidebar background color */
+.sidebar {
+    background-color: #279548 !important;
+    color: #ffffff; /* Optional: change text color to white for better readability */
+}
+
+/* Change navbar background color */
+.navbar {
+    background-color: #279548 !important;
+    color: #ffffff; /* Optional: change text color to white for better readability */
+}
+
+/* Ensure navbar links and icons are visible */
+.navbar .nav-link {
+    color: #ffffff !important;
+}

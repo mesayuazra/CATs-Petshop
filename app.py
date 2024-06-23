@@ -440,32 +440,6 @@ def delete_jadwal(groom_id):
             return jsonify({'result': 'success', 'msg': 'Reservasi berhasil terhapus'})
     except Exception as e:
         return jsonify({'result': 'failure', 'msg': str(e)})
-    
-
-@app.route('/manageGrooming', methods=['GET'])
-def manage_products():
-    products = list(db.layanan_grooming.find({}))  # Assuming accessories collection
-    return render_template('editGrooming.html', products=products)
-
-@app.route('/api/update-product/<product_id>', methods=['POST'])
-def update_product(product_id):
-    try:
-        data = request.json
-        updated_product = {
-            'name': data['name'],
-            'type': data['type'],
-            'category': data['category'],
-            'quantity': int(data['quantity']),
-            'price': float(data['price'])
-        }
-        result = db.layanan_grooming.update_one({'_id': ObjectId(product_id)}, {'$set': updated_product})
-        if result.modified_count == 1:
-            return jsonify({'result': 'success'})
-        return jsonify({'result': 'failure', 'msg': 'Product not found or update failed'})
-    except Exception as e:
-        return jsonify({'result': 'failure', 'msg': str(e)})
-
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

@@ -1,3 +1,37 @@
 section {
-margin-top: 30px;
+    margin-top: 30px;
+}
+
+body {
+    background-color: #f4af41 !important;
+}
+
+table th,
+table td {
+    font-weight: bold;
+    /* Mempertebal tulisan di dalam tabel */
+}
+
+table th,
+table td {
+    border: 2px solid black;
+    /* Warna dan ketebalan garis sel */
+    padding: 8px;
+    /* Jarak antara teks dan tepi sel */
+    text-align: center;
+    /* Pusatkan teks dalam sel */
+    color: #000;
+    /* Warna teks dalam sel */
+}
+
+table th {
+    background-color: #f2f2f2;
+    /* Warna latar belakang header tabel */
+    font-weight: bold;
+    /* Mempertebal teks header */
+}
+
+table td {
+    background-color: #fff;
+    /* Warna latar belakang sel tabel */
 }

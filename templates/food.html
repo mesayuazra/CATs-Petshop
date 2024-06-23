@@ -90,8 +90,12 @@
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Cari..." aria-label="Input" aria-describedby="button-addon1">
       <button class="btn btn-outline-danger" type="button" id="button-addon1">Cari</button>
+      <input type="text" class="form-control" placeholder="Cari nama produk..." id="searchFoodInput"
+        aria-label="Cari produk" aria-describedby="button-addon2">
+      <button class="btn btn-outline-primary" type="button" id="searchFoodButton">Cari</button>
     </div>
   </div>
+
 
   <section id="food" class="food" style="background:#f3f5fa;">
     <div class="container" data-aos="fade-up">
@@ -141,6 +145,21 @@
       // Buka link WhatsApp dalam tab baru
       window.open(whatsappURL);
     }
+
+    $(document).ready(function () {
+      $('#searchFoodButton').click(function () {
+        var searchText = $('#searchFoodInput').val().toLowerCase();
+
+        $('.card').each(function () {
+          var productName = $(this).find('.card-title').text().toLowerCase();
+          if (productName.includes(searchText)) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+    });
   </script>
 
   <!-- Vendor JS Files -->
@@ -160,5 +179,6 @@
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
+
 
 </html>
