@@ -11,6 +11,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <style>
+    body {
+      background-color: #f4af41 !important;
+    }
+
     .pagination {
       margin-top: 10px;
       text-align: center;
@@ -21,20 +25,50 @@
       height: 50px;
       object-fit: cover;
     }
+
+    table th,
+    table td {
+      font-weight: bold;
+      /* Mempertebal tulisan di dalam tabel */
+    }
+
+    table th,
+    table td {
+      border: 2px solid black;
+      /* Warna dan ketebalan garis sel */
+      padding: 8px;
+      /* Jarak antara teks dan tepi sel */
+      text-align: center;
+      /* Pusatkan teks dalam sel */
+      color: #000;
+      /* Warna teks dalam sel */
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      /* Warna latar belakang header tabel */
+      font-weight: bold;
+      /* Mempertebal teks header */
+    }
+
+    table td {
+      background-color: #fff;
+      /* Warna latar belakang sel tabel */
+    }
   </style>
 </head>
 
 <body>
   {% include 'sidebar.html' %}
 
-  <div class="container">
+  <div class="container-fluid">
     <!-- Bagian Accessories -->
     <div class="mt-4">
       <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Produk Accessories</h1>
         <div>
-          <input class="form-control d-inline w-auto" type="text" id="searchAccessory" placeholder="Search"
-            aria-label="Search">
+          <input class="form-control d-inline w-auto" type="text" id="searchAccessory"
+            placeholder="Search by Product Name" aria-label="Search">
           <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addAccessoryModal">+
             Tambah Produk</button>
         </div>
@@ -89,7 +123,7 @@
       <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Produk Makanan</h1>
         <div>
-          <input class="form-control d-inline w-auto" type="text" id="searchFood" placeholder="Search"
+          <input class="form-control d-inline w-auto" type="text" id="searchFood" placeholder="Search by Product Name"
             aria-label="Search">
           <button class="btn btn-primary d-inline ms-2" data-bs-toggle="modal" data-bs-target="#addFoodModal">+
             Tambah Produk</button>
@@ -302,6 +336,25 @@
         });
       });
     });
+
+    $(document).ready(function () {
+      // Pencarian untuk Produk Accessories
+      $('#searchAccessory').on('keyup', function () {
+        let value = $(this).val().toLowerCase();
+        $('#accessoryTable tbody tr').filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      });
+
+      // Pencarian untuk Produk Makanan
+      $('#searchFood').on('keyup', function () {
+        let value = $(this).val().toLowerCase();
+        $('#foodTable tbody tr').filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      });
+    });
+
   </script>
 </body>
 
