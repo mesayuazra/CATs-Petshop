@@ -191,7 +191,7 @@ h6 {
   font-size: 14px;
   border: none;
   font-weight: 600;
-  background: #E75319;
+  background: #C73420;
 }
 
 .navbar .getstarted:hover {
@@ -642,7 +642,7 @@ section {
 .why-us .content h3 {
   font-weight: 400;
   font-size: 34px;
-  color: #FFDE59;
+  color: #C73420;
 }
 
 .why-us .content h4 {
@@ -694,7 +694,7 @@ section {
 }
 
 .why-us .accordion-list span {
-  color: #FFEF61;
+  color: #C73420;
   font-weight: 600;
   font-size: 18px;
   padding-right: 10px;
@@ -717,11 +717,12 @@ section {
 }
 
 .why-us .accordion-list a.collapsed {
-  color: #343a40;
+  color: #C73420
+  ;
 }
 
 .why-us .accordion-list a.collapsed:hover {
-  color: #FFEF61;
+  color: #C73420;
 }
 
 .why-us .accordion-list a.collapsed .icon-show {
@@ -767,7 +768,7 @@ section {
 .skills .content h3 {
   font-weight: 700;
   font-size: 32px;
-  color: #FFDE59;
+  color: #C73420;
   font-family: "Poppins", sans-serif;
 }
 
@@ -783,7 +784,8 @@ section {
 .skills .content ul i {
   font-size: 20px;
   padding-right: 4px;
-  color: #FFEF61;
+  color: #C73420
+  ;
 }
 
 .skills .content p:last-child {
@@ -804,7 +806,8 @@ section {
   display: block;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
-  color: #FFDE59;
+  color: #C73420
+  ;
 }
 
 .skills .progress .skill .val {
@@ -821,7 +824,8 @@ section {
   width: 1px;
   height: 10px;
   transition: .9s;
-  background-color: #4668a2;
+  background-color: #C73420
+  ;
 }
 
 /*--------------------------------------------------------------

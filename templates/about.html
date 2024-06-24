@@ -41,29 +41,46 @@
   {% include 'navbar.html' %}
 
   <!-- ======= About Us Section ======= -->
-  <section id="about" class="about" style="background:#FFDE59;">
-    <div class="container" data-aos="fade-up">
+  <section id="about" class="about" style="background-color: #FFDE59; padding-top: 150px; margin-bottom:0;">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
 
-      <div class="section-title" style="padding: 80px 0 60px 0;">
-        <h2>Tentang Kami</h2>
+      <div class="section-title">
+        <h2>TENTANG KAMI</h2>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-12 text-center">
+          <h4 style="color:#C73420;">
+            Didirikan di Grand Depok City pada tahun 2015 dan sudah melayani +500 hewan
+            peliharaan. Banyak yang sudah
+            merasakan layanan CAT's Petshop & Clinic, mulai dari pembelian makanan dengan kualitas terbaik, aksesoris yang nyaman dipakai
+            anabul, klinik kesehatan bagi anabul yang terjangkit penyakit, vaksinasi, strelisisasi, pacak kucing, sampai pets
+            hotel jika pawrents sedang berpergian. Karena banyak pawrents yang senang dengan layanan yang tersedia, CAT's Petshop & Clinic membuka cabang
+            ke-2 di Tanah Baru, Beji di tahun 2017 sekaligus memudahkan pawrents yang lokasi rumahnya jauh dari Cabang Grand Depok City.
+          </h4>
+          <img src="../static/img/aboutimg.png" class="img-fluid mt-4" alt="Deskripsi alternatif gambar">
+        </div>
+        </div>
       </div>
 
     </div>
-  </section><!-- End About Us Section -->
+  </section>
 
-  <section id="cta" class="cta" style="background:#f3f5fa;">
+
+
+  <!-- <section id="cta" class="cta" style="background:#f3f5fa;">
     <div class="container" data-aos="zoom-in" style="padding: 80px 0 30px 0;">
   
       <div class="row">
         <div class="col-lg-9 text-center text-lg-start">
-          <h3 style="margin-bottom: 10px;">CAT'S PETSHOP & CLINIC</h3>
-          <p>Didirikan di Grand Depok City pada tahun 2015 dan sudah melayani +500 hewan
+          <h3 style="margin-bottom: 15px;">CAT'S PETSHOP & CLINIC</h3>
+          <h4 style="color:#C73420;">Didirikan di Grand Depok City pada tahun 2015 dan sudah melayani +500 hewan
             peliharaan. Banyak yang sudah
             merasakan layanan CAT's Petshop & Clinic, mulai dari pembelian makanan dengan kualitas terbaik, aksesoris yang nyaman dipakai
             anabul, klinik kesehatan bagi anabul yang terjangkit penyakit, vaksinasi, strelisisasi, pacak kucing, sampai pets
             hotel jika pawrents sedang berpergian. Karena banyak pawrents yang senang dengan layanan yang tersedia, CAT's Petshop & Clinic membuka cabang
             ke-2 di Tanah Baru, Beji di tahun 2017 sekaligus memudahkan pawrents yang lokasi rumahnya jauh dari Cabang Grand Depok City.  
-          </p>
+          </h4>
         </div>
         <div class="col-lg-3 text-center text-lg-end mt-2">
           <img src="{{ url_for('static', filename='img/aboutimg2.png') }}" alt="">
@@ -71,10 +88,10 @@
       </div>
   
     </div>
-  </section><!-- End Cta Section -->
+  </section>End Cta Section -->
 
   <!-- ======= Services Section ======= -->
-  <section id="services" class="services section-bg" style="background:#f3f5fa;">
+  <section id="services" class="services section-bg" style="background-color: #FFDE59">
     <div class="container" data-aos="fade-up">
 
       <div class="row">
@@ -106,119 +123,6 @@
 
     </div>
   </section><!-- End Services Section -->
-
-
-  <section id="portfolio" class="portfolio" style="background:#f3f5fa;">
-    <div class="container aos-init aos-animate" data-aos="fade-up">
-
-      <div class="section-title">
-        <h2>ALBUM</h2>
-      </div>
-
-      <ul id="portfolio-flters" class="d-flex justify-content-center aos-init aos-animate" data-aos="fade-up"
-        data-aos-delay="100">
-        <li data-filter="*" class="filter-active">Semua</li>
-        <li data-filter=".filter-app">Klinik</li>
-        <li data-filter=".filter-card">Grooming</li>
-      </ul>
-
-      <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
-        style="position: relative; height: 1275.6px;">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/klinik_vaksin.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Vaksinasi</h4>
-            <a href="../static/img/portfolio/klinik_vaksin.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Vaksinasi"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/sterilisasi_kucing.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Sterilisasi</h4>
-            <a href="../static/img/portfolio/sterilisasi_kucing.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Sterilisasi"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/sterilisasi_kucing2.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Sterilisasi</h4>
-            <a href="../static/img/portfolio/sterilisasi_kucing2.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Sterilisasi"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/sterilisasi_kucing3.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Sterilisasi</h4>
-            <a href="../static/img/portfolio/sterilisasi_kucing3.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Sterilisasi"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/grooming_kucing.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Grooming Kitten</h4>
-            <a href="../static/img/portfolio/grooming_kucing.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Grooming Kitten"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/grooming_kucing2.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Grooming Kucing Dewasa</h4>
-            <a href="../static/img/portfolio/grooming_kucing2.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Grooming Kucing Dewasa"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/grooming_kucing3.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Grooming</h4>
-            <a href="../static/img/portfolio/grooming_kucing3.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Grooming"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/vaksinasi_rabies.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Vaksinasi Rabies</h4>
-            <a href="../static/img/portfolio/vaksinasi_rabies.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Vaksinasi Rabies"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/vaksinasi_antarjemput.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Vaksinasi Antar-Jemput Anjing Besar</h4>
-            <a href="../static/img/portfolio/vaksinasi_antarjemput.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Vaksinasi anjing besar antar-jemput"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-          <div class="portfolio-img"><img src="../static/img/portfolio/klinik_monyet.jpg" class="img-fluid" alt=""></div>
-          <div class="portfolio-info">
-            <h4>Klinik Hewan</h4>
-            <a href="../static/img/portfolio/klinik_monyet.jpg" data-gallery="portfolioGallery"
-              class="portfolio-lightbox preview-link" title="Vaksinasi Hewan"><i class="bx bx-plus"></i></a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
 
   <!-- ======= Footer ======= -->
   {% include 'footer.html' %}

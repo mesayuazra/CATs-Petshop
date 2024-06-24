@@ -10,8 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="static/img/favicon.png" rel="icon">
-    <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
 
     <!-- Google Fonts -->
     <link
@@ -46,7 +45,11 @@
                 <div class="profile mt-5">
                     <div class="text-center">
                         <div class="profile-image">
+                            {% if profile_photo_url %}
                             <img src="{{ profile_photo_url }}" alt="Profile Image" id="profileImage">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='img/user_default.jpg')}}" alt="Default Profile Image" id="profileImage">
+                            {% endif %}
                         </div>
 
                         <div class="d-flex justify-content-center align-items-center mt-2">

@@ -10,9 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../static/img/favicon.png" rel="icon">
-  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -41,20 +39,15 @@
 
 <body>
   {% include 'navbar.html' %}
+  <section id="cta" class="cta" style="background:#FFDE59;">
+    <div class="container" data-aos="zoom-in" style="padding: 80px 0 60px 0;">
 
-  <!-- ======= Cta Section ======= -->
-<section id="cta" class="cta" style="background:#FFDE59;">
-  <div class="container" data-aos="zoom-in" style="padding: 80px 0 50px 0;">
-
-    <div class="row justify-content-center">
-      <div class="text-center" style="padding: 80px 0 60px 0;">
-        <h3>KLINIK</h3>
-        <p class="text-center fw-bold" style="color: rgba(153, 56, 0, 0.6);">
+      <div class="section-title">
+        <h2>Klinik</h2>
+        <p class="text-center fw-bold" style="color: rgba(153, 56, 0, 0.6); font-size:20px">
           Selamat datang di CAT's Petshop & Clinic! Kami dengan senang hati menawarkan berbagai layanan untuk hewan kesayangan Anda, termasuk vaksinasi, sterilisasi, netralisasi, operasi, dan konsultasi. Kepuasan dan kesehatan hewan peliharaan Anda adalah prioritas kami.</p>
       </div>
-    </div>
-  </div>
-</section><!-- End Cta Section -->
+  </section>
 
 
  <section id="clinicsatu" class="clinicsatu">

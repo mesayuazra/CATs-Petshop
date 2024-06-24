@@ -10,9 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../static/img/favicon.png" rel="icon">
-  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -57,10 +55,9 @@
           <div class="form-group">
             <label for="bookingDate">Tanggal</label>
             <div class="dropdown-wrapper">
-              <select id="bookingDate" class="form-control custom-dropdown">
+              <select id="bookingDate" class="form-control">
                 <!-- Options will be populated by JavaScript -->
               </select>
-              <span class="dropdown-arrow">&#9660;</span>
             </div>
           </div>
         </div>
@@ -68,18 +65,17 @@
           <div class="form-group">
             <label for="bookingTime">Waktu</label>
             <div class="dropdown-wrapper">
-              <select id="bookingTime" class="form-control custom-dropdown">
+              <select id="bookingTime" class="form-control">
+                <option value="16:00">16:00</option>
                 <option value="17:00">17:00</option>
                 <option value="17:30">17:30</option>
                 <option value="18:00">18:00</option>
                 <option value="18:30">18:30</option>
                 <option value="19:00">19:00</option>
                 <option value="19:30">19:30</option>
-                <option value="20:00">20:00</option>
-                <option value="20:30">20:30</option>
 
               </select>
-              <span class="dropdown-arrow">&#9660;</span>
+            
             </div>
           </div>
         </div>

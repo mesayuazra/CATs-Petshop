@@ -13,16 +13,9 @@ body {
 
 table th,
 table td {
+    padding: 12px;
     font-weight: 400;
-    /* Mempertebal tulisan di dalam tabel */
-}
-
-table th,
-table td {
-    border: 1px solid rgb(50, 49, 49);
     /* Warna dan ketebalan garis sel */
-    padding: 8px;
-    /* Jarak antara teks dan tepi sel */
     text-align: center;
     /* Pusatkan teks dalam sel */
     color: #000;
@@ -30,7 +23,6 @@ table td {
 }
 
 table th {
-    background-color: #fff;
     /* Warna latar belakang header tabel */
     font-weight: bold;
     /* Mempertebal teks header */
@@ -39,6 +31,15 @@ table th {
 table td {
     background-color: #fff;
     /* Warna latar belakang sel tabel */
+}
+
+.card {
+    background-color: #f3f0f0!important; /* Change sidebar background color */
+}
+
+.card-text {
+    font-weight: bolder;
+    font-size: xx-large;
 }
 
 .product-image {
