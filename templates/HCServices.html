@@ -10,7 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ url_for('static', filename='img/logo_white.png') }}" rel="icon">
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -28,6 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="../static/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/HCServices.css') }}">
 
   <!-- =======================================================
   * Template Name: Arsha - v4.3.0
@@ -44,105 +46,77 @@
 <section id="cta" class="cta" style="background:#FFDE59;">
   <div class="container" data-aos="zoom-in" style="padding: 80px 0 50px 0;">
 
-    <div class="row">
-      <div class="col-lg-9 text-center text-lg-start">
-        <h3>Layanan Kesehatan</h3>
-        <p>Menyediakan konsultasi dan pemeriksaan kesehatan anabul, vaksinasi, dan sterilisasi</p>
-      </div>
-      <div class="col-lg-3 cta-btn-container text-center">
-        <a class="cta-btn align-middle" href="#">Call To Action</a>
+    <div class="row justify-content-center">
+      <div class="col-lg-9 text-center">
+        <h3 style="font-size: 40px;">Layanan Kesehatan</h3>
       </div>
     </div>
+    
 
   </div>
 </section><!-- End Cta Section -->
 
-<section id="team" class="team section-bg">
+
+<section id="clinicsatu" class="clinicsatu">
   <div class="container" data-aos="fade-up">
 
+    
     <div class="section-title">
-      <h2>Team</h2>
-      <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-        in
-        iste officiis commodi quidem hic quas.</p>
+      <div style="flex: 0;">
+        <img src="{{ url_for('static', filename='img/clinicLK1.jpg') }}" alt="Image Description">
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h2>Layanan Vaksinasi</h2>
+        <p>Layanan vaksinasi di CAT’s Petshop menyediakan perlindungan kesehatan optimal bagi hewan peliharaan Anda dengan vaksinasi rutin yang dilakukan oleh tenaga profesional. Kami memastikan setiap hewan mendapatkan vaksin yang sesuai untuk mencegah penyakit umum dan menjaga kesejahteraan mereka.</p>
+      </div>
     </div>
-
-    <div class="row">
-
-      <div class="col-lg-6">
-        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
-          <div class="pic"><img src="../static/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-            <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div>
-          </div>
-        </div>
+    
+    <div class="section-title">
+      <div style="flex: 0;">
+        <img src="{{ url_for('static', filename='img/clinicLK2.jpeg') }}" alt="Image Description">
       </div>
+      <div style="flex: 1; text-align: left;">
+        <h2>Layanan Sterilisasi</h2>
+        <p>Layanan sterilisasi di CAT’s Petshop menawarkan prosedur steril yang aman dan efektif untuk mencegah reproduksi hewan peliharaan Anda. Dilakukan oleh dokter hewan berpengalaman, sterilisasi membantu mengurangi risiko penyakit dan masalah perilaku.</p>
       </div>
-      </div>
-      </section>
-
- <!-- ======= Team Section ======= -->
- <section id="team" class="team section-bg">
-  <div class="container" data-aos="fade-up">
+    </div>
 
     <div class="section-title">
-      <h2>Team</h2>
-      <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-        in
-        iste officiis commodi quidem hic quas.</p>
+      <div style="flex: 0;">
+        <img src="{{ url_for('static', filename='img/clinicLK3.png') }}" alt="Image Description">
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h2>Layanan Netralisasi</h2>
+        <p>Layanan netralisasi kami memberikan solusi kemanusiaan untuk mengontrol populasi hewan peliharaan dengan prosedur yang cepat dan minim risiko. Kami memastikan proses ini dilakukan dengan penuh perhatian terhadap kesejahteraan hewan.</p>
+      </div>
+    </div>
+    
+    <div class="section-title">
+      <div style="flex: 0;">
+        <img src="{{ url_for('static', filename='img/clinicLK4.png') }}" alt="Image Description">
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h2>Layanan Operasi</h2>
+        <p>CAT’s Petshop menyediakan berbagai layanan operasi hewan dengan fasilitas lengkap dan teknologi canggih. Dokter hewan kami siap menangani operasi dari yang sederhana hingga kompleks, memastikan hewan peliharaan Anda mendapatkan perawatan terbaik.</p>
+      </div>
     </div>
 
-    <div class="row">
-
-      <div class="col-lg-6">
-        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
-          <div class="pic"><img src="../static/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-            <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div>
-          </div>
-        </div>
+    <div class="section-title">
+      <div style="flex: 0;">
+        <img src="{{ url_for('static', filename='img/clinicLK5.jpg') }}" alt="Image Description">
       </div>
-
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="300">
-          <div class="pic"><img src="../static/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>William Anderson</h4>
-            <span>CTO</span>
-            <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-            <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div>
-          </div>
-        </div>
+      <div style="flex: 1; text-align: left;">
+        <h2>Layanan Konsultasi</h2>
+        <p>Layanan konsultasi di CAT’s Petshop menawarkan saran dan panduan profesional mengenai kesehatan, nutrisi, dan perawatan hewan peliharaan Anda. Dokter hewan kami siap membantu menjawab pertanyaan dan memberikan solusi terbaik untuk kesejahteraan hewan kesayangan Anda.</p>
       </div>
-
     </div>
-
+    <div style="text-align: center;">
+      <a href="/BookingHealthcareServices">
+        <button type="button" class="btn btn-danger">Booking Layanan Kesehatan</button>
+      </a>
+    </div>    
   </div>
-</section><!-- End Team Section -->
-
+</section>
 
   </div>
   </section>

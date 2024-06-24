@@ -1,0 +1,81 @@
+#vaksinasiContent {
+    display: flex;
+    align-items: flex-start;
+}
+  
+.service-info {
+    flex: 0 1 60%; /* Reduce the width of the text section */
+    text-align: left;
+    font-size: 14px; /* Reduce the font size */
+}
+  
+.service-image img {
+    max-width: 250px; /* Increase max width of the image */
+    height: auto;
+    margin-left: 20px; /* Add margin to the left of the image */
+}
+  
+.form-check-label {
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  .cta-subtitle {
+    font-size: 18px; /* Perbesar ukuran teks */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .custom-dropdown {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 25px; /* Kurva pada dropdown */
+    border: 2px solid red; /* Border warna merah */
+    color: red; /* Teks warna merah */
+    background-color: white;
+  }
+  
+  .dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 18px;
+    color: red;
+  }
+  
+  .custom-dropdown:focus + .dropdown-arrow {
+    transform: translateY(-50%) rotate(180deg); /* Panah mengarah ke atas saat dropdown terbuka */
+  }
+  
+  .cta-btn {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .cta-btn:hover {
+    background-color: #ff4c3b;
+    color: white;
+  }
+    

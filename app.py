@@ -27,6 +27,9 @@ accessories = []  # Initialize accessories globally as an empty list
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def is_logged_in():
+    return 'logged_in' in session and session['logged_in']
+
 @app.route('/')
 def index():
     return render_template('index.html', accessories=accessories, food=[])
@@ -53,17 +56,93 @@ def grooming():
 def clinicHome():
     return render_template('clinicHome.html')
 
-@app.route('/MedicalRecords', methods=['GET'])
-def medicalRecords():
-    return render_template('medicalRecords.html')
-
 @app.route('/HealthCareServices', methods=['GET'])
 def HCServices():
     return render_template('HCServices.html')
 
 @app.route('/BookingHealthcareServices', methods=['GET'])
 def bookHCServices():
-    return render_template('BookHCServices.html')
+    if not is_logged_in():
+        return redirect(url_for('login'))
+    
+    # Mengambil username dari session jika pengguna sudah login
+    username = session.get('username', 'User')  # 'User' digunakan sebagai default jika session tidak memiliki username
+    
+    return render_template('BookHCServices.html', username=username)
+
+
+@app.route('/bookingHCS', methods=['GET'])
+def booking_hcs():
+    bookHCS = list(db.bookingHCS.find({}))
+    return render_template('adminBookHCS.html', bookHCS=bookHCS)
+
+@app.route('/bookingHCS', methods=['POST'])
+def add_booking_hcs():
+    try:
+        name = request.form['bookingName']
+        services = request.form['bookingServices']
+        waktu = request.form['bookingTime']
+        tanggal = request.form['bookingDate']
+        antar_jemput = request.form['antar_jemput']
+        status = request.form['status']
+
+        new_reservation = {
+            "name": name,
+            "services": services,
+            "waktu": waktu,
+            "tanggal": tanggal,
+            "antar_jemput": antar_jemput,
+            "status": status
+        }
+        # Insert the new reservation into the database
+        db.bookingHCS.insert_one(new_reservation)
+
+        return jsonify({'result': 'success', 'msg': 'Booking Layanan Klinik berhasil disimpan'})
+    
+    except Exception as e:
+        print(e)  # Debug statement to print the error
+        return jsonify({"result": "error", "message": str(e)}), 400
+
+
+@app.route('/edit_bookingHCS/<booking_id>', methods=['GET', 'POST'])
+def edit_booking_hcs(booking_id):
+    if request.method == 'GET':
+        bookHCS = db.bookingHCS.find_one({'_id': ObjectId(booking_id)})
+        if not bookHCS:
+            return jsonify({'error': 'Booking not found'}), 404
+        bookHCS['_id'] = str(bookHCS['_id'])
+        return jsonify(bookHCS)
+    elif request.method == 'POST':
+        try:
+            booking_name = request.form['bookingName']
+            booking_services = request.form['bookingServices']
+            booking_time = request.form['bookingTime']
+            booking_date = request.form['bookingDate']
+            antar_jemput = request.form['antar_jemput']
+            status = request.form['status']
+
+            update_data = {
+                'name': booking_name,
+                'services': booking_services,
+                'waktu': booking_time,
+                'tanggal': booking_date,
+                'antar_jemput': antar_jemput,
+                'status': status,
+            }
+
+            result = db.bookingHCS.update_one({'_id': ObjectId(booking_id)}, {'$set': update_data})
+
+            if result.modified_count == 1:
+                return jsonify({'result': 'success', 'msg': 'Booking berhasil diperbarui'})
+            return jsonify({'result': 'gagal', 'msg': 'Booking tidak ditemukan atau gagal diperbarui'})
+        except Exception as e:
+            return jsonify({'result': 'failure', 'msg': str(e)})
+
+
+@app.route('/bookingHCS/<id>', methods=['DELETE'])
+def delete_booking(id):
+    db.bookingHCS.delete_one({'_id': ObjectId(id)})
+    return jsonify({'status': 'Booking deleted successfully'})
 
 @app.route('/check_login_status', methods=['GET'])
 def check_login_status():
